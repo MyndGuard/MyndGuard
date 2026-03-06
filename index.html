@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyndGuard — Family Wellness Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:    #040d24;
+      --deep:    #080f2e;
+      --blue:    #0d1f5c;
+      --accent:  #d4a832;
+      --gold:    #f0c040;
+      --pale:    #c8d8f8;
+      --muted:   #7a90c0;
+      --white:   #f4f0e8;
+      --star:    rgba(212,168,50,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── Star field ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 15% 12%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 8%,  rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 72% 22%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 5%,  rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 32% 35%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 65%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(2px 2px at 92% 45%, rgba(240,192,64,0.4) 0%, transparent 100%),
+        radial-gradient(2px 2px at 5%  55%, rgba(240,192,64,0.3) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(4,13,36,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212,168,50,0.15);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--pale);
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--navy) !important;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.1s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; transform: translateY(-1px); }
+
+    /* ── Hero ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-inner { max-width: 800px; }
+
+    .hero-logo {
+      width: 160px;
+      height: 160px;
+      border-radius: 24px;
+      margin: 0 auto 32px;
+      display: block;
+      box-shadow: 0 0 60px rgba(212,168,50,0.35), 0 0 120px rgba(212,168,50,0.15);
+      animation: floatLogo 5s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+
+    .hero-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 8vw, 92px);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--gold);
+      text-shadow: 0 0 40px rgba(240,192,64,0.4);
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 3vw, 26px);
+      font-style: italic;
+      color: var(--pale);
+      margin-bottom: 32px;
+    }
+
+    .hero-desc {
+      font-size: 20px;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 48px;
+      line-height: 1.8;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--navy);
+      padding: 16px 36px;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+      box-shadow: 0 4px 24px rgba(212,168,50,0.3);
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,50,0.4); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--pale);
+      padding: 16px 36px;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid rgba(200,216,248,0.3);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── Section shared ── */
+    section { position: relative; z-index: 1; }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    h2 em { color: var(--gold); font-style: italic; }
+
+    .section-intro {
+      font-size: 19px;
+      color: var(--muted);
+      max-width: 620px;
+      line-height: 1.8;
+    }
+
+    /* ── Divider ── */
+    .star-divider {
+      text-align: center;
+      padding: 48px 0;
+      color: var(--accent);
+      font-size: 20px;
+      letter-spacing: 24px;
+    }
+
+    /* ── Why Section ── */
+    #why {
+      padding: 100px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .why-header { margin-bottom: 72px; }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+      margin-top: 60px;
+    }
+
+    .audience-card {
+      background: rgba(13,31,92,0.4);
+      border: 1px solid rgba(212,168,50,0.12);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .audience-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .audience-card:hover { transform: translateY(-6px); border-color: rgba(212,168,50,0.35); }
+    .audience-card:hover::before { opacity: 1; }
+
+    .card-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .card-who {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .audience-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .audience-card p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .card-points {
+      margin-top: 20px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-points li {
+      color: var(--pale);
+      font-size: 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .card-points li::before {
+      content: '✦';
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 12px;
+    }
+
+    /* ── Features strip ── */
+    #features {
+      padding: 80px 48px;
+      background: rgba(8,15,46,0.6);
+      border-top: 1px solid rgba(212,168,50,0.08);
+      border-bottom: 1px solid rgba(212,168,50,0.08);
+    }
+
+    .features-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .feature-item {
+      text-align: center;
+    }
+
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(212,168,50,0.1);
+      border: 1px solid rgba(212,168,50,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin: 0 auto 20px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .feature-item:hover .feature-icon {
+      background: rgba(212,168,50,0.2);
+      transform: scale(1.1);
+    }
+
+    .feature-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .feature-item p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Download ── */
+    #download {
+      padding: 120px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .download-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    .download-card {
+      background: rgba(13,31,92,0.35);
+      border: 1px solid rgba(212,168,50,0.2);
+      border-radius: 12px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .download-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .download-card p {
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-size: 17px;
+    }
+
+    .download-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212,168,50,0.08);
+      border: 1px solid rgba(212,168,50,0.2);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    /* Install steps */
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(212,168,50,0.08);
+      position: relative;
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: rgba(212,168,50,0.12);
+      border: 1px solid rgba(212,168,50,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-content h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .step-content p, .step-content code {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    code {
+      background: rgba(255,255,255,0.06);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: var(--pale);
+    }
+
+    /* ── Testimonials ── */
+    #testimonials {
+      padding: 120px 48px;
+      background: rgba(8,15,46,0.5);
+      border-top: 1px solid rgba(212,168,50,0.08);
+    }
+
+    .testimonials-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonials-header { margin-bottom: 72px; }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 72px;
+    }
+
+    .testimonial-card {
+      background: rgba(13,31,92,0.4);
+      border: 1px solid rgba(212,168,50,0.12);
+      border-radius: 12px;
+      padding: 36px 32px;
+      transition: transform 0.3s, border-color 0.3s;
+      position: relative;
+    }
+
+    .testimonial-card:hover { transform: translateY(-4px); border-color: rgba(212,168,50,0.3); }
+
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      color: var(--accent);
+      opacity: 0.4;
+      line-height: 0.6;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .testimonial-text {
+      font-size: 17px;
+      color: var(--pale);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(212,168,50,0.15);
+      border: 1px solid rgba(212,168,50,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .author-role {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Submit testimonial */
+    .testimonial-form {
+      max-width: 680px;
+      margin: 0 auto;
+      background: rgba(13,31,92,0.35);
+      border: 1px solid rgba(212,168,50,0.18);
+      border-radius: 16px;
+      padding: 48px 48px;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .form-sub {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    input, select, textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,168,50,0.2);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: 'Crimson Pro', serif;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input::placeholder, textarea::placeholder { color: rgba(122,144,192,0.5); }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+
+    select option { background: var(--deep); }
+
+    textarea { resize: vertical; min-height: 120px; }
+
+    .stars-input {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .star-btn {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: rgba(212,168,50,0.3);
+      transition: color 0.15s, transform 0.15s;
+      padding: 0;
+    }
+
+    .star-btn:hover, .star-btn.active { color: var(--gold); transform: scale(1.15); }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px;
+    }
+
+    .form-success .check {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .form-success p {
+      color: var(--pale);
+      font-size: 18px;
+      font-style: italic;
+    }
+
+    /* ── About ── */
+    #about {
+      padding: 120px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    .about-mission h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .about-mission p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .founders-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .founder-card {
+      background: rgba(13,31,92,0.4);
+      border: 1px solid rgba(212,168,50,0.15);
+      border-radius: 12px;
+      padding: 32px 32px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .founder-card:hover { transform: translateX(8px); border-color: rgba(212,168,50,0.4); }
+
+    .founder-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212,168,50,0.3), rgba(13,31,92,0.8));
+      border: 2px solid rgba(212,168,50,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      flex-shrink: 0;
+      box-shadow: 0 0 24px rgba(212,168,50,0.15);
+    }
+
+    .founder-info {}
+
+    .founder-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .founder-grade {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .founder-bio {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── School ── */
+    .school-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(212,168,50,0.08);
+      border: 1px solid rgba(212,168,50,0.2);
+      border-radius: 100px;
+      padding: 10px 20px;
+      margin-top: 32px;
+    }
+
+    .school-badge span {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--pale);
+      letter-spacing: 1px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 60px 48px 40px;
+      border-top: 1px solid rgba(212,168,50,0.1);
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .footer-tagline {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .footer-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(122,144,192,0.4);
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      #why, #features .features-inner, #download, #testimonials .testimonials-inner, #about { padding-left: 24px; padding-right: 24px; }
+      .testimonial-form { padding: 32px 24px; }
+    }
+
+    /* ── Nebula glow backgrounds ── */
+    .nebula-left {
+      position: absolute;
+      top: -100px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(13,50,180,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .nebula-right {
+      position: absolute;
+      top: 100px; right: -200px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(80,20,140,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Privacy notice */
+    .privacy-strip {
+      background: rgba(212,168,50,0.06);
+      border: 1px solid rgba(212,168,50,0.12);
+      border-radius: 8px;
+      padding: 16px 24px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-top: 32px;
+      max-width: 520px;
+    }
+
+    .privacy-strip p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <img src="logo.png" alt="MyndGuard Logo" />
+    <span class="nav-logo-text">MyndGuard</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#why">Why MyndGuard</a></li>
+    <li><a href="#download">Install</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#download" class="nav-cta">Get Extension</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="nebula-left"></div>
+  <div class="nebula-right"></div>
+  <div class="hero-inner">
+    <img src="logo.png" alt="MyndGuard" class="hero-logo" />
+    <p class="hero-tag">Chrome Extension · Free · Privacy First</p>
+    <h1>MyndGuard</h1>
+    <p class="hero-sub">Family Wellness Monitor</p>
+    <p class="hero-desc">
+      An AI-powered Chrome extension that gently monitors browsing patterns to surface mental wellness insights — helping parents, educators, and school counsellors stay connected to what matters most.
+    </p>
+    <div class="hero-btns">
+      <a href="#download" class="btn-primary">⬇ Download Extension</a>
+      <a href="#why" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- WHY -->
+<section id="why">
+  <div class="nebula-left" style="top:0;opacity:0.5;"></div>
+  <div class="why-header reveal">
+    <p class="section-label">Purpose</p>
+    <h2>Built for every <em>guardian</em></h2>
+    <p class="section-intro">
+      Whether you're a parent worried about late-night scrolling, a teen trying to understand your own patterns, or a school counsellor supporting dozens of students — MyndGuard was made for you.
+    </p>
+  </div>
+
+  <div class="audience-grid">
+    <div class="audience-card reveal">
+      <span class="card-icon">👩‍👧‍👦</span>
+      <p class="card-who">For Parents</p>
+      <h3>Stay in the loop, not in the way</h3>
+      <p>Get gentle, AI-generated wellness reports about your child's digital habits — without invading their privacy or reading their messages.</p>
+      <ul class="card-points">
+        <li>Receive email summaries every 6 hours</li>
+        <li>Spot concerning patterns early — late-night browsing, distress searches</li>
+        <li>No raw URLs ever stored or shared</li>
+        <li>Start meaningful conversations with context</li>
+      </ul>
+    </div>
+
+    <div class="audience-card reveal">
+      <span class="card-icon">🎒</span>
+      <p class="card-who">For Students & Teens</p>
+      <h3>Understand yourself better</h3>
+      <p>Your browsing habits tell a story about how you're really feeling. MyndGuard helps you reflect on your own digital wellness — privately.</p>
+      <ul class="card-points">
+        <li>See your own wellness score after analysis</li>
+        <li>Discover patterns you didn't notice</li>
+        <li>Get gentle, non-judgmental recommendations</li>
+        <li>All data stays on your device</li>
+      </ul>
+    </div>
+
+    <div class="audience-card reveal">
+      <span class="card-icon">🏫</span>
+      <p class="card-who">For School Counsellors</p>
+      <h3>Scale your support system</h3>
+      <p>Support more students with deeper insight. MyndGuard surfaces patterns that are easy to miss in a busy school environment.</p>
+      <ul class="card-points">
+        <li>Identify at-risk students earlier</li>
+        <li>Evidence-based conversations with students</li>
+        <li>Share guardian access with parents</li>
+        <li>Completely free for educators</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:0;">
+      <p class="section-label">What it monitors</p>
+      <h2>Rich signals, <em>compassionate</em> insights</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item reveal">
+        <div class="feature-icon">🌐</div>
+        <h4>Browsing Patterns</h4>
+        <p>Categorizes websites visited into wellness-relevant buckets. No raw URLs stored.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">▶️</div>
+        <h4>YouTube Watch History</h4>
+        <p>Analyzes video titles and content themes to detect emotional signals.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">🔍</div>
+        <h4>Google Search Queries</h4>
+        <p>Understands what topics are being searched — from learning to mental health concerns.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">🤖</div>
+        <h4>AI Wellness Score</h4>
+        <p>Llama 3.3 70B analyses all data sources and returns a 1–10 wellness score with insights.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">📧</div>
+        <h4>Email Reports</h4>
+        <p>Automated wellness summaries sent to parents and guardians every 6 hours.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">🔒</div>
+        <h4>Privacy First</h4>
+        <p>Everything is processed locally. Only anonymized category data is ever sent to AI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="nebula-right" style="top:-50px;opacity:0.6;"></div>
+  <div class="reveal">
+    <p class="section-label">Installation</p>
+    <h2>Get started in <em>3 minutes</em></h2>
+    <p class="section-intro">MyndGuard is a free Chrome extension. Download the zip, load it in Chrome, and you're ready.</p>
+  </div>
+
+  <div class="download-grid">
+    <div class="download-card reveal">
+      <div class="download-badge">
+        <span>🧠</span>
+        <span>MyndGuard v1.0 · Chrome Extension</span>
+      </div>
+      <h3>Download MyndGuard</h3>
+      <p>Free for families, students, and educators. Works on Chrome and Chromium-based browsers.</p>
+      <a href="MyndGuard.zip" class="btn-primary" download>⬇ Download MyndGuard.zip</a>
+      <div class="privacy-strip">
+        <span>🔒</span>
+        <p>Your browsing data never leaves your device. No accounts required. No data sold.</p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="section-label" style="margin-bottom:24px;">How to install</p>
+      <ol class="steps">
+        <li class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Download the zip file</h4>
+            <p>Click the download button and save <code>MyndGuard.zip</code> to your computer.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Unzip the file</h4>
+            <p>Extract the folder. You'll see a folder called <code>mindguard-extension</code>.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Open Chrome Extensions</h4>
+            <p>In Chrome, go to <code>chrome://extensions</code> and turn on <strong>Developer Mode</strong> (top right toggle).</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Load the extension</h4>
+            <p>Click <strong>"Load unpacked"</strong> and select the extracted <code>mindguard-extension</code> folder.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>Pin and open</h4>
+            <p>Click the puzzle icon in Chrome's toolbar, pin MyndGuard, and open it. Your Google account links automatically!</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header reveal">
+      <p class="section-label">Community</p>
+      <h2>What families are <em>saying</em></h2>
+      <p class="section-intro">From parents to counsellors to students — here's how MyndGuard is making a difference.</p>
+    </div>
+
+    <div class="testimonials-grid" id="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <span class="quote-mark">"</span>
+        <p class="testimonial-text">As a school counsellor, I was skeptical at first — but MyndGuard helped me start conversations with a student I'd been worried about for weeks. It surfaced patterns I couldn't see otherwise.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👩</div>
+          <div>
+            <div class="author-name">Priya Menon</div>
+            <div class="author-role">School Counsellor · Bangalore</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <span class="quote-mark">"</span>
+        <p class="testimonial-text">My daughter and I now talk about her digital habits openly. MyndGuard gave us a shared language to discuss how she's feeling without it feeling like surveillance.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👨</div>
+          <div>
+            <div class="author-name">Rohan Krishnamurthy</div>
+            <div class="author-role">Parent · Chennai</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <span class="quote-mark">"</span>
+        <p class="testimonial-text">I didn't realise how much late-night YouTube I was watching until MyndGuard showed me the pattern. It helped me take my sleep more seriously.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">🧑</div>
+          <div>
+            <div class="author-name">Arjun S.</div>
+            <div class="author-role">Student, Grade 9 · Hyderabad</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit form -->
+    <div class="testimonial-form reveal">
+      <h3 class="form-title">Share your experience</h3>
+      <p class="form-sub">Using MyndGuard? Your story helps other families discover it.</p>
+
+      <div id="form-wrap">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="t-name" placeholder="Full name" />
+          </div>
+          <div class="form-group">
+            <label>Role</label>
+            <select id="t-role">
+              <option value="">Select your role</option>
+              <option>Parent</option>
+              <option>Student</option>
+              <option>School Counsellor</option>
+              <option>Educator</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Location (optional)</label>
+          <input type="text" id="t-location" placeholder="City, Country" />
+        </div>
+
+        <div class="form-group">
+          <label>Your experience with MyndGuard</label>
+          <textarea id="t-text" placeholder="Tell us how MyndGuard has helped you or your family..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Rating</label>
+          <div class="stars-input" id="stars-input">
+            <button class="star-btn" data-val="1">★</button>
+            <button class="star-btn" data-val="2">★</button>
+            <button class="star-btn" data-val="3">★</button>
+            <button class="star-btn" data-val="4">★</button>
+            <button class="star-btn" data-val="5">★</button>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="submitTestimonial()" style="width:100%;margin-top:8px;">Submit Testimonial</button>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <div class="check">🌟</div>
+        <h3 class="form-title">Thank you!</h3>
+        <p>Your testimonial has been submitted. We'll review it shortly and add it to the community board.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="nebula-left" style="opacity:0.4;"></div>
+  <div class="about-grid">
+    <div class="about-mission reveal">
+      <p class="section-label">Our Story</p>
+      <h2>Built by <em>students</em>, for everyone</h2>
+      <h3>Why we built this</h3>
+      <p>MyndGuard was created because we noticed something: the adults around us cared about our wellbeing, but had no window into our digital lives — and we often didn't either.</p>
+      <p>We wanted to build something that bridges that gap. Not surveillance — understanding. Not control — connection. A tool that helps everyone have better conversations about mental wellness in the digital age.</p>
+      <p>We believe technology should serve our minds, not the other way around.</p>
+      <div class="school-badge">
+        <span>🎓</span>
+        <span>Inventure Academy · Bengaluru</span>
+      </div>
+    </div>
+
+    <div class="founders-grid reveal">
+      <p class="section-label" style="margin-bottom:20px;">The Founders</p>
+
+      <div class="founder-card">
+        <div class="founder-avatar">👩‍💻</div>
+        <div class="founder-info">
+          <div class="founder-name">Vidya Suravarapu</div>
+          <div class="founder-grade">7th Grade · Inventure Academy, Bengaluru</div>
+          <p class="founder-bio">Passionate about technology's impact on mental health, Vidya designed the core architecture and AI analysis engine behind MyndGuard.</p>
+        </div>
+      </div>
+
+      <div class="founder-card">
+        <div class="founder-avatar">👧‍💻</div>
+        <div class="founder-info">
+          <div class="founder-name">Uma Suravarapu</div>
+          <div class="founder-grade">6th Grade · Inventure Academy, Bengaluru</div>
+          <p class="founder-bio">Uma shaped MyndGuard's vision from a student's perspective — ensuring it feels safe, non-judgmental, and genuinely helpful to young people.</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(212,168,50,0.05);border:1px solid rgba(212,168,50,0.12);border-radius:12px;padding:24px 28px;margin-top:8px;">
+        <p style="font-style:italic;color:var(--pale);font-size:17px;line-height:1.75;">"We built MyndGuard because we wanted our parents to understand us better — not by reading our messages, but by seeing patterns they couldn't otherwise see. We hope it helps your family too."</p>
+        <p style="margin-top:12px;font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;">— Vidya & Uma Suravarapu</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MyndGuard</div>
+  <div class="footer-tagline">Family Wellness Monitor · Built with ♥ in Bengaluru</div>
+  <ul class="footer-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#why">Why MyndGuard</a></li>
+    <li><a href="#download">Install</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 MyndGuard · Made by students at Inventure Academy, Bengaluru</p>
+</footer>
+
+<script>
+  // ── Scroll reveal ──────────────────────────────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Star rating ───────────────────────────────────────────────────────────
+  let selectedRating = 0;
+  document.querySelectorAll('.star-btn').forEach(btn => {
+    btn.addEventListener('mouseover', () => {
+      const val = +btn.dataset.val;
+      document.querySelectorAll('.star-btn').forEach(b => {
+        b.classList.toggle('active', +b.dataset.val <= val);
+      });
+    });
+    btn.addEventListener('mouseout', () => {
+      document.querySelectorAll('.star-btn').forEach(b => {
+        b.classList.toggle('active', +b.dataset.val <= selectedRating);
+      });
+    });
+    btn.addEventListener('click', () => {
+      selectedRating = +btn.dataset.val;
+      document.querySelectorAll('.star-btn').forEach(b => {
+        b.classList.toggle('active', +b.dataset.val <= selectedRating);
+      });
+    });
+  });
+
+  // ── Submit testimonial ─────────────────────────────────────────────────────
+  function submitTestimonial() {
+    const name     = document.getElementById('t-name').value.trim();
+    const role     = document.getElementById('t-role').value;
+    const text     = document.getElementById('t-text').value.trim();
+    const location = document.getElementById('t-location').value.trim();
+
+    if (!name || !role || !text) {
+      alert('Please fill in your name, role, and experience before submitting.');
+      return;
+    }
+
+    // Add to the testimonials grid
+    const grid = document.getElementById('testimonials-grid');
+    const card = document.createElement('div');
+    card.className = 'testimonial-card';
+    const emoji = role === 'Parent' ? '👨' : role === 'Student' ? '🧑' : role === 'School Counsellor' ? '👩‍🏫' : '🌟';
+    card.innerHTML = `
+      <span class="quote-mark">"</span>
+      <p class="testimonial-text">${text}</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">${emoji}</div>
+        <div>
+          <div class="author-name">${name}</div>
+          <div class="author-role">${role}${location ? ' · ' + location : ''}</div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+
+    // Show success
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+
+    // Scroll to new card
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+  }
+
+  // ── Nav active state ───────────────────────────────────────────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.style.color = a.getAttribute('href') === '#' + entry.target.id
+            ? 'var(--gold)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => navObserver.observe(s));
+</script>
+</body>
+</html>
