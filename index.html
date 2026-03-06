@@ -751,28 +751,25 @@
     .founder-card {
       background: rgba(13,31,92,0.4);
       border: 1px solid rgba(212,168,50,0.15);
-      border-radius: 12px;
-      padding: 32px 32px;
+      border-radius: 16px;
+      padding: 36px 32px;
       display: flex;
-      gap: 24px;
-      align-items: center;
+      gap: 28px;
+      align-items: flex-start;
       transition: transform 0.3s, border-color 0.3s;
     }
 
     .founder-card:hover { transform: translateX(8px); border-color: rgba(212,168,50,0.4); }
 
     .founder-avatar {
-      width: 80px;
-      height: 80px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(212,168,50,0.3), rgba(13,31,92,0.8));
-      border: 2px solid rgba(212,168,50,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
+      border: 3px solid rgba(212,168,50,0.5);
       flex-shrink: 0;
-      box-shadow: 0 0 24px rgba(212,168,50,0.15);
+      box-shadow: 0 0 32px rgba(212,168,50,0.2);
+      object-fit: cover;
+      object-position: center top;
     }
 
     .founder-info {}
@@ -790,13 +787,31 @@
       letter-spacing: 3px;
       color: var(--accent);
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .founder-bio {
       font-size: 16px;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.7;
+    }
+
+    .founder-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .founder-tag {
+      background: rgba(212,168,50,0.08);
+      border: 1px solid rgba(212,168,50,0.2);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 1px;
     }
 
     /* ── School ── */
@@ -1077,7 +1092,7 @@
       </div>
       <h3>Download MyndGuard</h3>
       <p>Free for families, students, and educators. Works on Chrome and Chromium-based browsers.</p>
-      <a href="MyndGuard.zip" class="btn-primary" download>⬇ Download MyndGuard.zip</a>
+      <a href="https://raw.githubusercontent.com/myndguard/MyndGuard/main/MyndGuard.zip" class="btn-primary" download>⬇ Download MyndGuard.zip</a>
       <div class="privacy-strip">
         <span>🔒</span>
         <p>Your browsing data never leaves your device. No accounts required. No data sold.</p>
@@ -1256,26 +1271,38 @@
       <p class="section-label" style="margin-bottom:20px;">The Founders</p>
 
       <div class="founder-card">
-        <div class="founder-avatar">👩‍💻</div>
+        <img src="vidya.jpg" alt="Vidya Suravarapu" class="founder-avatar" />
         <div class="founder-info">
           <div class="founder-name">Vidya Suravarapu</div>
           <div class="founder-grade">7th Grade · Inventure Academy, Bengaluru</div>
-          <p class="founder-bio">Passionate about technology's impact on mental health, Vidya designed the core architecture and AI analysis engine behind MyndGuard.</p>
+          <p class="founder-bio">Vidya is passionate about technology and believes it can solve real-world problems. She designed the core architecture and AI analysis engine behind MyndGuard. When not coding, Vidya is an accomplished Carnatic classical musician and runner-up of <strong style="color:var(--pale)">ETV Padutha Theeyaga Season 23</strong>. She also loves playing basketball.</p>
+          <div class="founder-tags">
+            <span class="founder-tag">🤖 AI Architecture</span>
+            <span class="founder-tag">🎵 Carnatic Music</span>
+            <span class="founder-tag">🏀 Basketball</span>
+            <span class="founder-tag">🎤 Singer</span>
+          </div>
         </div>
       </div>
 
       <div class="founder-card">
-        <div class="founder-avatar">👧‍💻</div>
+        <img src="uma.jpg" alt="Uma Suravarapu" class="founder-avatar" />
         <div class="founder-info">
           <div class="founder-name">Uma Suravarapu</div>
           <div class="founder-grade">6th Grade · Inventure Academy, Bengaluru</div>
-          <p class="founder-bio">Uma shaped MyndGuard's vision from a student's perspective — ensuring it feels safe, non-judgmental, and genuinely helpful to young people.</p>
+          <p class="founder-bio">Uma is a technology enthusiast who keeps up with the latest trends in tech. She shaped MyndGuard's vision from a student's perspective — ensuring it feels safe, non-judgmental, and genuinely helpful to young people. Outside of technology, Uma is an avid reader, a passionate Carnatic student, and loves playing basketball.</p>
+          <div class="founder-tags">
+            <span class="founder-tag">💡 Product Vision</span>
+            <span class="founder-tag">🎵 Carnatic Music</span>
+            <span class="founder-tag">🏀 Basketball</span>
+            <span class="founder-tag">📚 Avid Reader</span>
+          </div>
         </div>
       </div>
 
-      <div style="background:rgba(212,168,50,0.05);border:1px solid rgba(212,168,50,0.12);border-radius:12px;padding:24px 28px;margin-top:8px;">
-        <p style="font-style:italic;color:var(--pale);font-size:17px;line-height:1.75;">"We built MyndGuard because we wanted our parents to understand us better — not by reading our messages, but by seeing patterns they couldn't otherwise see. We hope it helps your family too."</p>
-        <p style="margin-top:12px;font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;">— Vidya & Uma Suravarapu</p>
+      <div style="background:rgba(212,168,50,0.05);border:1px solid rgba(212,168,50,0.15);border-radius:12px;padding:28px 32px;margin-top:8px;">
+        <p style="font-style:italic;color:var(--pale);font-size:19px;line-height:1.8;">"Mental wellness shouldn't be invisible. We built MyndGuard to bring it into the light — gently, and with care."</p>
+        <p style="margin-top:14px;font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;">— Vidya & Uma Suravarapu</p>
       </div>
     </div>
   </div>
