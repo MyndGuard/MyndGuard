@@ -771,7 +771,7 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
+      grid-template-columns: 1fr 1.8fr;
       gap: 80px;
       align-items: center;
       margin-top: 60px;
@@ -1005,7 +1005,8 @@
     <li><a href="#why">Why MyndGuard</a></li>
     <li><a href="#download">Install</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#about">About</a>
+          <a href="#journey">Our Journey</a></li>
     <li><a href="#download" class="nav-cta">Get Extension</a></li>
   </ul>
 </nav>
@@ -1108,9 +1109,29 @@
         <p>Understands what topics are being searched — from learning to mental health concerns.</p>
       </div>
       <div class="feature-item reveal">
+        <div class="feature-icon">👾</div>
+        <h4>Reddit Activity</h4>
+        <p>Monitors subreddit visits to identify patterns linked to mood, stress, or mental health topics.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">🎬</div>
+        <h4>Streaming Services</h4>
+        <p>Tracks time spent on Netflix, Spotify, Twitch, Disney+ and more to spot binge or escapism patterns.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">🛍️</div>
+        <h4>Shopping Behaviour</h4>
+        <p>Detects impulse or stress-driven shopping patterns across Amazon, eBay, Etsy and more.</p>
+      </div>
+      <div class="feature-item reveal">
         <div class="feature-icon">🤖</div>
-        <h4>AI Wellness Score</h4>
-        <p>Llama 3.3 70B analyses all data sources and returns a 1–10 wellness score with insights.</p>
+        <h4>AI Tools Usage</h4>
+        <p>Monitors visits to ChatGPT, Claude, Gemini and more — understanding how AI is being used emotionally.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">📰</div>
+        <h4>News Consumption</h4>
+        <p>Tracks news sources and visit frequency to flag excessive doom-scrolling or anxiety-driven habits.</p>
       </div>
       <div class="feature-item reveal">
         <div class="feature-icon">📧</div>
@@ -1194,6 +1215,13 @@
     </div>
   </div>
 </section>
+
+<div style="text-align:center;padding:16px 0 40px;">
+  <p style="font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);">
+    Having trouble installing? Email us at
+    <a href="mailto:myndguard@gmail.com" style="color:var(--accent);text-decoration:none;">myndguard@gmail.com</a>
+  </p>
+</div>
 
 <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
@@ -1455,14 +1483,36 @@
 <footer>
   <div class="footer-logo">MyndGuard</div>
   <div class="footer-tagline">Family Wellness Monitor · Built with ♥ in Bengaluru</div>
+  <!-- Version badge -->
+  <div style="margin-bottom:24px;display:inline-flex;align-items:center;gap:12px;background:rgba(212,168,50,0.08);border:1px solid rgba(212,168,50,0.2);border-radius:100px;padding:8px 20px;">
+    <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;">v1.0</span>
+    <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);">March 7, 2026</span>
+    <span id="footer-changelog-toggle" onclick="document.getElementById('footer-changelog').style.display=document.getElementById('footer-changelog').style.display==='none'?'block':'none'" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);cursor:pointer;text-decoration:underline;">What's new ▾</span>
+  </div>
+  <div id="footer-changelog" style="display:none;background:rgba(13,31,92,0.5);border:1px solid rgba(212,168,50,0.15);border-radius:12px;padding:20px 28px;max-width:520px;margin:0 auto 28px;text-align:left;">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;margin-bottom:12px;">v1.0 — March 7, 2026</div>
+    <ul style="list-style:none;padding:0;">
+      <li style="font-size:15px;color:var(--pale);margin-bottom:8px;">🧠 AI-powered wellness scoring using Groq Llama 3.3-70B</li>
+      <li style="font-size:15px;color:var(--pale);margin-bottom:8px;">📊 Monitors 8 data sources — YouTube, Reddit, Google Search, Shopping, Streaming, AI Tools, News &amp; General Browsing</li>
+      <li style="font-size:15px;color:var(--pale);margin-bottom:8px;">📧 Automated wellness email reports via EmailJS</li>
+      <li style="font-size:15px;color:var(--pale);margin-bottom:8px;">🔒 100% private — all processing done locally on your device</li>
+      <li style="font-size:15px;color:var(--pale);">🌐 Analysis runs automatically every 6 hours</li>
+    </ul>
+  </div>
+
   <ul class="footer-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#why">Why MyndGuard</a></li>
     <li><a href="#download">Install</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#about">About</a>
+          <a href="#journey">Our Journey</a></li>
   </ul>
-  <p class="footer-copy">© 2025 MyndGuard · Made by students at Inventure Academy, Bengaluru</p>
+  <div style="margin-top:20px;font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);line-height:2;">
+    <div>🐛 Report issues · 💬 Support → <a href="mailto:myndguard@gmail.com" style="color:var(--accent);text-decoration:none;">myndguard@gmail.com</a></div>
+    <div>🤝 Partners · 💼 Investors · 📣 Ads → <a href="mailto:myndguard@gmail.com" style="color:var(--accent);text-decoration:none;">myndguard@gmail.com</a></div>
+  </div>
+  <p class="footer-copy" style="margin-top:16px;">© 2026 MyndGuard · Made by students at Inventure Academy, Bengaluru</p>
 </footer>
 
 <!-- Firebase SDK -->

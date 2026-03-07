@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "date": "2026-03-07",
+  "changelog": [
+    "AI-powered wellness scoring using Groq Llama 3.3-70B",
+    "Monitors 8 data sources — YouTube, Reddit, Google Search, Shopping, Streaming, AI Tools, News & General Browsing",
+    "Automated wellness email reports via EmailJS",
+    "100% private — all processing done locally on your device",
+    "Analysis runs automatically every 6 hours"
+  ]
+}
