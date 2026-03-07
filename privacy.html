@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyndGuard · Privacy Policy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:#040d24;--accent:#d4a832;--pale:#c8d8f8;--muted:#7a90c0;--white:#f4f0e8;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--navy);color:var(--white);font-family:'Crimson Pro',Georgia,serif;font-size:18px;line-height:1.8;}
+    .container{max-width:780px;margin:0 auto;padding:80px 40px;}
+    .logo{font-family:'Playfair Display',serif;font-size:24px;color:var(--accent);margin-bottom:8px;}
+    .logo a{color:var(--accent);text-decoration:none;}
+    .back{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:2px;margin-bottom:56px;display:block;}
+    h1{font-family:'Playfair Display',serif;font-size:40px;color:var(--white);margin-bottom:12px;}
+    .updated{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:2px;margin-bottom:56px;}
+    h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--accent);margin:48px 0 16px;}
+    p{color:var(--pale);margin-bottom:16px;}
+    ul{color:var(--pale);padding-left:24px;margin-bottom:16px;}
+    ul li{margin-bottom:8px;}
+    .highlight{background:rgba(212,168,50,0.08);border:1px solid rgba(212,168,50,0.2);border-radius:12px;padding:24px 28px;margin:24px 0;}
+    .highlight p{margin:0;color:var(--white);}
+    a{color:var(--accent);}
+    hr{border:none;border-top:1px solid rgba(212,168,50,0.1);margin:48px 0;}
+    footer{text-align:center;font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-top:80px;padding-top:32px;border-top:1px solid rgba(212,168,50,0.1);}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="logo"><a href="https://myndguard.com">🧠 MyndGuard</a></div>
+  <a class="back" href="https://myndguard.com">← Back to myndguard.com</a>
+
+  <h1>Privacy Policy</h1>
+  <div class="updated">Last updated: March 7, 2026</div>
+
+  <div class="highlight">
+    <p>🔒 <strong>The short version:</strong> MyndGuard processes all your browsing data locally on your device. We never sell, share, or store your personal browsing history on any server. Only anonymized, summarized wellness insights are ever sent to our AI provider.</p>
+  </div>
+
+  <h2>1. Who We Are</h2>
+  <p>MyndGuard is a Chrome extension developed by Vidya Suravarapu and Uma Suravarapu, students at Inventure Academy, Bengaluru, India. MyndGuard is designed to help families monitor digital wellness through browsing pattern analysis.</p>
+  <p>If you have any questions about this policy, contact us at <a href="mailto:myndguard@gmail.com">myndguard@gmail.com</a>.</p>
+
+  <h2>2. What Data We Access</h2>
+  <p>MyndGuard accesses the following data from your Chrome browser:</p>
+  <ul>
+    <li><strong>Browsing history</strong> — domain names and visit timestamps from the past 24 hours</li>
+    <li><strong>Google account email</strong> — used only to send wellness email reports to the address you configure</li>
+    <li><strong>Chrome storage</strong> — to save your settings and wellness scores locally on your device</li>
+  </ul>
+
+  <h2>3. How We Use Your Data</h2>
+  <p>Your data is used exclusively to generate wellness insights. Here is exactly what happens:</p>
+  <ul>
+    <li>Your browsing history is collected and <strong>categorized locally</strong> on your device into wellness-relevant groups (e.g. entertainment, news, social media)</li>
+    <li>Only <strong>anonymized category summaries</strong> — never raw URLs or domain names — are sent to Groq's AI API to generate a wellness score</li>
+    <li>The wellness score and insights are stored <strong>locally on your device</strong> using Chrome storage</li>
+    <li>A wellness summary email is sent to your configured email address via EmailJS</li>
+  </ul>
+
+  <div class="highlight">
+    <p>📵 <strong>We never transmit raw URLs, domain names, or browsing history to any server.</strong> Only anonymized category counts (e.g. "15 entertainment visits, 3 news visits") are ever sent externally.</p>
+  </div>
+
+  <h2>4. Data Sharing</h2>
+  <p>We share anonymized, aggregated data with the following third-party services solely to provide the extension's functionality:</p>
+  <ul>
+    <li><strong>Groq API</strong> — receives anonymized category summaries to generate AI wellness insights. Groq's privacy policy is available at groq.com/privacy</li>
+    <li><strong>EmailJS</strong> — used to send wellness email reports to your configured email address. EmailJS's privacy policy is available at emailjs.com/legal/privacy-policy</li>
+  </ul>
+  <p>We do <strong>not</strong> sell, rent, or share your data with advertisers, data brokers, or any other third parties.</p>
+
+  <h2>5. Data Storage & Retention</h2>
+  <ul>
+    <li>All browsing data is processed in memory and <strong>never written to any external database</strong></li>
+    <li>Wellness scores and settings are stored in <strong>Chrome's local storage</strong> on your device only</li>
+    <li>You can clear all stored data at any time by removing the extension from Chrome</li>
+  </ul>
+
+  <h2>6. Children's Privacy</h2>
+  <p>MyndGuard is designed to be used by families, including minors, under parental supervision. We do not knowingly collect personal information from children under 13 without parental consent. The extension is intended to be installed and configured by a parent or guardian.</p>
+
+  <h2>7. Permissions Explained</h2>
+  <p>MyndGuard requests the following Chrome permissions:</p>
+  <ul>
+    <li><strong>history</strong> — to read your browsing history for wellness analysis</li>
+    <li><strong>storage</strong> — to save your wellness scores and settings locally</li>
+    <li><strong>alarms</strong> — to schedule automatic analysis every 6 hours</li>
+    <li><strong>notifications</strong> — to alert you when a new wellness report is ready</li>
+    <li><strong>identity / identity.email</strong> — to retrieve your Google account email for sending wellness reports</li>
+  </ul>
+
+  <h2>8. Your Rights</h2>
+  <p>You have the right to:</p>
+  <ul>
+    <li>Remove the extension at any time, which deletes all locally stored data</li>
+    <li>Opt out of email reports by not configuring an email address</li>
+    <li>Contact us at <a href="mailto:myndguard@gmail.com">myndguard@gmail.com</a> with any privacy concerns</li>
+  </ul>
+
+  <h2>9. Changes to This Policy</h2>
+  <p>We may update this privacy policy from time to time. We will notify users of significant changes by updating the "Last updated" date at the top of this page. Continued use of MyndGuard after changes constitutes acceptance of the updated policy.</p>
+
+  <h2>10. Contact Us</h2>
+  <p>For any privacy-related questions or concerns, please contact us at:</p>
+  <p><a href="mailto:myndguard@gmail.com">myndguard@gmail.com</a></p>
+
+  <hr>
+
+  <footer>
+    © 2026 MyndGuard · Made with ❤️ by students at Inventure Academy, Bengaluru
+  </footer>
+</div>
+</body>
+</html>

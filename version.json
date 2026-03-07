@@ -3,9 +3,11 @@
   "date": "2026-03-07",
   "changelog": [
     "AI-powered wellness scoring using Groq Llama 3.3-70B",
-    "Monitors 8 data sources — YouTube, Reddit, Google Search, Shopping, Streaming, AI Tools, News & General Browsing",
+    "Monitors 11 data sources \u2014 YouTube, Reddit, Google Search, Shopping, Streaming, AI Tools, News, Social Media, Gaming & Messaging",
     "Automated wellness email reports via EmailJS",
-    "100% private — all processing done locally on your device",
-    "Analysis runs automatically every 6 hours"
+    "100% private \u2014 all processing done locally on your device",
+    "Analysis runs automatically every 6 hours",
+    "Configurable scan frequency \u2014 every 4, 8, 12 or 24 hours",
+    "Settings tab \u2014 toggle YouTube & Google Search account access"
   ]
 }

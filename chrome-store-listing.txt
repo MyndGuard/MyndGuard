@@ -1,0 +1,72 @@
+=======================================================
+MYNDGUARD — CHROME WEB STORE LISTING
+=======================================================
+
+SHORT DESCRIPTION (132 characters max):
+-------------------------------------------------------
+AI-powered mental wellness monitor for families. Understand your digital habits. Stay well. 100% private.
+
+
+FULL DESCRIPTION:
+-------------------------------------------------------
+MyndGuard is a free Chrome extension that helps families understand the mental wellness impact of their digital habits — privately, compassionately, and automatically.
+
+Built by two students from Inventure Academy, Bengaluru, MyndGuard monitors browsing patterns across 8 data sources and uses Groq's Llama 3.3-70B AI to generate a personalised wellness score every 6 hours.
+
+🧠 WHAT IT DOES
+MyndGuard analyses your digital activity across:
+• YouTube watch history — detects emotional content themes
+• Google Search queries — identifies stress or mental health signals
+• Reddit activity — spots harmful community patterns
+• Streaming services — flags binge-watching or escapism
+• Shopping behaviour — detects impulse or stress-driven purchases
+• AI tools usage — understands how AI is being used emotionally
+• News consumption — flags doom-scrolling habits
+• General browsing — categorises all other web activity
+
+Every 6 hours, MyndGuard combines all signals and generates:
+✅ A 1–10 wellness score
+✅ Personalised insights and recommendations
+✅ An automated email report sent to parents or guardians
+
+🔒 100% PRIVATE
+MyndGuard never stores or transmits your raw browsing history. All processing happens locally on your device. Only anonymized category summaries are ever sent to our AI provider — never URLs, never domain names, never personal data.
+
+👨‍👩‍👧 DESIGNED FOR FAMILIES
+MyndGuard was built with students in mind. It gives parents a gentle, non-intrusive window into their child's digital wellbeing — not surveillance, but care.
+
+🌿 ALIGNED WITH UN SDG GOAL 3
+MyndGuard is proudly aligned with the United Nations Sustainable Development Goal 3 — Good Health and Wellbeing.
+
+📧 AUTOMATED WELLNESS REPORTS
+Parents and guardians receive automated wellness summaries by email — no need to check the extension manually.
+
+---
+Questions? Contact us at myndguard@gmail.com
+Privacy Policy: https://myndguard.com/privacy.html
+Website: https://myndguard.com
+
+
+=======================================================
+CATEGORY: Productivity
+=======================================================
+
+
+=======================================================
+TAGS / KEYWORDS:
+=======================================================
+mental health, wellness, digital wellbeing, screen time, family safety, parental monitoring, AI wellness, browsing habits, student wellness, mindfulness
+
+
+=======================================================
+STORE LISTING CHECKLIST:
+=======================================================
+[ ] Screenshots (1280x800) — need 1-5 screenshots of the popup
+[ ] Promotional tile (440x280) — small banner image
+[ ] Large promo banner (1400x560) — optional but recommended
+[ ] Privacy policy URL: https://myndguard.com/privacy.html
+[ ] Homepage URL: https://myndguard.com
+[ ] Support email: myndguard@gmail.com
+[ ] $5 developer registration fee paid
+[ ] Extension zip uploaded (MyndGuard.zip)
+[ ] manifest.json version set to 1.0
