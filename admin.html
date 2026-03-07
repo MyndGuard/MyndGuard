@@ -154,7 +154,7 @@
 
   async function loadTestimonials() {
     try {
-      const q = query(collection(db, 'testimonials'), orderBy('timestamp', 'desc'));
+      const q = query(collection(db, 'Testimonials'), orderBy('timestamp', 'desc'));
       const snap = await getDocs(q);
       allTestimonials = [];
       snap.forEach(d => allTestimonials.push({ id: d.id, ...d.data() }));
@@ -215,7 +215,7 @@
 
   window.approveTestimonial = async function(id) {
     try {
-      await updateDoc(doc(db,'testimonials',id), { status:'approved' });
+      await updateDoc(doc(db,'Testimonials',id), { status:'approved' });
       const t = allTestimonials.find(t => t.id===id);
       if (t) t.status = 'approved';
       updateStats(); renderList();
@@ -224,7 +224,7 @@
 
   window.unapproveTestimonial = async function(id) {
     try {
-      await updateDoc(doc(db,'testimonials',id), { status:'pending' });
+      await updateDoc(doc(db,'Testimonials',id), { status:'pending' });
       const t = allTestimonials.find(t => t.id===id);
       if (t) t.status = 'pending';
       updateStats(); renderList();
@@ -234,7 +234,7 @@
   window.deleteTestimonial = async function(id) {
     if (!confirm('Are you sure you want to permanently delete this testimonial?')) return;
     try {
-      await deleteDoc(doc(db,'testimonials',id));
+      await deleteDoc(doc(db,'Testimonials',id));
       allTestimonials = allTestimonials.filter(t => t.id!==id);
       updateStats(); renderList();
     } catch(e) { alert('Could not delete. Try again.'); }
