@@ -1697,16 +1697,22 @@
   // ── Nav active state ───────────────────────────────────────────────────────
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(a => {
-          a.style.color = a.getAttribute('href') === '#' + entry.target.id ? 'var(--gold)' : '';
-        });
+
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if (top <= window.innerHeight * 0.4) {
+        current = section.id;
       }
     });
-  }, { threshold: 0.4 });
-  sections.forEach(s => navObserver.observe(s));
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
 
   // Init carousel with seed cards
   updateCarousel();
