@@ -992,6 +992,22 @@
       line-height: 1.6;
     }
   </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-43QKX43MTZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-43QKX43MTZ');
+
+  // Track download button click
+  function trackDownload() {
+    gtag('event', 'download', {
+      event_category: 'Extension',
+      event_label: 'MyndGuard v1.0'
+    });
+  }
+</script>
 </head>
 <body>
 
@@ -1238,7 +1254,7 @@
       </div>
       <h3>Download MyndGuard</h3>
       <p>Free for families, students, and educators. Works on Chrome and Chromium-based browsers.</p>
-      <a href="https://raw.githubusercontent.com/myndguard/MyndGuard/main/MyndGuard.zip" class="btn-primary" download>⬇ Download MyndGuard.zip</a>
+      <a href="https://raw.githubusercontent.com/myndguard/MyndGuard/main/MyndGuard.zip" class="btn-primary" download onclick="trackDownload()">⬇ Download MyndGuard.zip</a>
       <div class="privacy-strip">
         <span>🔒</span>
         <p>Your browsing data never leaves your device. No accounts required. No data sold.</p>
