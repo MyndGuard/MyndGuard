@@ -535,11 +535,18 @@
 
     .testimonials-header { margin-bottom: 72px; }
 
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
+    /* ── Testimonials Carousel ── */
+    .carousel-wrapper {
+      position: relative;
       margin-bottom: 72px;
+    }
+
+    .testimonials-grid {
+      display: flex;
+      gap: 24px;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      padding: 8px 4px 16px;
     }
 
     .testimonial-card {
@@ -549,9 +556,55 @@
       padding: 36px 32px;
       transition: transform 0.3s, border-color 0.3s;
       position: relative;
+      min-width: 340px;
+      max-width: 340px;
+      flex-shrink: 0;
     }
 
     .testimonial-card:hover { transform: translateY(-4px); border-color: rgba(212,168,50,0.3); }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(13,31,92,0.9);
+      border: 1px solid rgba(212,168,50,0.4);
+      color: var(--gold);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .carousel-btn:hover { background: rgba(212,168,50,0.15); border-color: rgba(212,168,50,0.8); }
+    .carousel-btn.prev { left: -22px; }
+    .carousel-btn.next { right: -22px; }
+    .carousel-btn:disabled { opacity: 0.3; cursor: default; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+      margin-bottom: 48px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(212,168,50,0.25);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .carousel-dot.active { background: var(--accent); transform: scale(1.3); }
 
     .quote-mark {
       font-family: 'Playfair Display', serif;
@@ -1153,7 +1206,9 @@
       <p class="section-intro">From parents to counsellors to students — here's how MyndGuard is making a difference.</p>
     </div>
 
-    <div class="testimonials-grid" id="testimonials-grid">
+    <div class="carousel-wrapper">
+      <button class="carousel-btn prev" id="carousel-prev" onclick="scrollCarousel(-1)">&#8592;</button>
+      <div class="testimonials-grid" id="testimonials-grid">
       <div class="testimonial-card reveal">
         <span class="quote-mark">"</span>
         <p class="testimonial-text">As a school counsellor, I was skeptical at first — but MyndGuard helped me start conversations with a student I'd been worried about for weeks. It surfaced patterns I couldn't see otherwise.</p>
@@ -1189,7 +1244,10 @@
           </div>
         </div>
       </div>
+      </div>
+      <button class="carousel-btn next" id="carousel-next" onclick="scrollCarousel(1)">&#8594;</button>
     </div>
+    <div class="carousel-dots" id="carousel-dots"></div>
 
     <!-- Submit form -->
     <div class="testimonial-form reveal">
@@ -1275,7 +1333,7 @@
         <div class="founder-info">
           <div class="founder-name">Vidya Suravarapu</div>
           <div class="founder-grade">7th Grade · Inventure Academy, Bengaluru</div>
-          <p class="founder-bio">Vidya started with a question: can technology understand how we feel? That curiosity drove her to dream MyndGuard. Vidya designed the entire architecture and AI analysis engine. When she steps away from the screen, she channels the same discipline into Carnatic classical music — she placed runner-up on <strong style="color:var(--pale)">ETV Padutha Theeyaga Season 23</strong> — and into her favourite sport, basketball.</p>
+          <p class="founder-bio">Vidya started with a question: can technology understand how we feel? That curiosity drove her to dream MyndGuard. At MyndGuard, Vidya designed the entire architecture and AI analysis engine — from the initial prototype all the way to the Groq AI integration. When she steps away from the screen, she channels the same discipline into Carnatic classical music — she placed runner-up on <strong style="color:var(--pale)">ETV Padutha Theeyaga Season 23</strong> — and into her favourite sport, basketball.</p>
           <div class="founder-tags">
             <span class="founder-tag">🤖 AI Architecture</span>
             <span class="founder-tag">🎵 Carnatic Music</span>
@@ -1290,7 +1348,7 @@
         <div class="founder-info">
           <div class="founder-name">Uma Suravarapu</div>
           <div class="founder-grade">6th Grade · Inventure Academy, Bengaluru</div>
-          <p class="founder-bio">Uma has always had her finger on the pulse of what's next in technology. At MyndGuard, she researched and handpicked every technology that powers the extension. She also brought the most important perspective of all — that of a student — shaping the product to feel safe, welcoming, and genuinely useful for young people. Beyond tech, she's an avid reader who devours books, a dedicated Carnatic music student, and a fierce basketball player.</p>
+          <p class="founder-bio">Uma has always had her finger on the pulse of what's next in technology. At MyndGuard, she researched, handpicked, and configured every technology that powers the extension — from Groq AI to EmailJS. She also brought the most important perspective of all — that of a student — shaping the product to feel safe, welcoming, and genuinely useful for young people. Beyond tech, she's an avid reader who devours books, a dedicated Carnatic music student, and a fierce basketball player.</p>
           <div class="founder-tags">
             <span class="founder-tag">💡 Product Vision</span>
             <span class="founder-tag">🎵 Carnatic Music</span>
@@ -1304,6 +1362,91 @@
         <p style="font-style:italic;color:var(--pale);font-size:19px;line-height:1.8;">"Mental wellness shouldn't be invisible. We built MyndGuard to bring it into the light — gently, and with care."</p>
         <p style="margin-top:14px;font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;">— Vidya & Uma Suravarapu</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR JOURNEY -->
+<section id="journey" style="padding:100px 0;position:relative;overflow:hidden;">
+  <div class="nebula-right" style="opacity:0.3;top:10%;"></div>
+  <div style="max-width:860px;margin:0 auto;padding:0 40px;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:72px;">
+      <p class="section-label">How We Got Here</p>
+      <h2>Our <em>Journey</em></h2>
+      <p class="section-intro">MyndGuard didn't start as a Chrome extension. It started as a question — and grew one step at a time.</p>
+    </div>
+
+    <!-- Timeline -->
+    <div style="position:relative;">
+      <div style="position:absolute;left:50%;transform:translateX(-50%);top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,rgba(212,168,50,0.35),transparent);"></div>
+
+      <!-- Step 1 -->
+      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
+        <div style="flex:1;text-align:right;padding-right:48px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 1</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">The Question</h3>
+          <p style="color:var(--muted);font-size:16px;line-height:1.7;">It started with a simple curiosity — can technology understand how we feel? Vidya and Uma began exploring whether browsing patterns could reveal something meaningful about mental wellness.</p>
+        </div>
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">💡</div>
+        <div style="flex:1;padding-left:48px;"></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
+        <div style="flex:1;padding-right:48px;"></div>
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">🎨</div>
+        <div style="flex:1;padding-left:48px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 2</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">Designing the Vision in Figma</h3>
+          <p style="color:var(--muted);font-size:16px;line-height:1.7;">Before writing a single line of code, the entire product was designed in Figma — mapping out screens, user flows, and the wellness dashboard. This became the blueprint for everything that followed.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
+        <div style="flex:1;text-align:right;padding-right:48px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 3</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">Building the Chrome Extension</h3>
+          <p style="color:var(--muted);font-size:16px;line-height:1.7;">Vidya architected the core extension using Chrome Manifest V3 — building the data collection engine that monitors browsing patterns across YouTube, Reddit, Google Search, and more.</p>
+        </div>
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">🔧</div>
+        <div style="flex:1;padding-left:48px;"></div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
+        <div style="flex:1;padding-right:48px;"></div>
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">🤖</div>
+        <div style="flex:1;padding-left:48px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 4</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">Integrating Groq AI</h3>
+          <p style="color:var(--muted);font-size:16px;line-height:1.7;">Uma researched and selected Groq's Llama 3.3-70B model as the AI engine — and configured the entire integration herself. The result: real-time wellness scoring that analyses 8 data sources every 6 hours.</p>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
+        <div style="flex:1;text-align:right;padding-right:48px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 5</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">Adding Email Reports with EmailJS</h3>
+          <p style="color:var(--muted);font-size:16px;line-height:1.7;">Uma configured EmailJS to deliver automated wellness summaries directly to parents and guardians — giving families a gentle, non-intrusive window into digital wellbeing.</p>
+        </div>
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">📧</div>
+        <div style="flex:1;padding-left:48px;"></div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="reveal" style="display:flex;gap:0;align-items:center;">
+        <div style="flex:1;padding-right:48px;"></div>
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.2);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 32px rgba(212,168,50,0.25);">🌟</div>
+        <div style="flex:1;padding-left:48px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">TODAY</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">MyndGuard is Live</h3>
+          <p style="color:var(--muted);font-size:16px;line-height:1.7;">MyndGuard is now a fully working Chrome extension used by real families. Built entirely by two students from Inventure Academy, Bengaluru — and just getting started.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1322,6 +1465,95 @@
   <p class="footer-copy">© 2025 MyndGuard · Made by students at Inventure Academy, Bengaluru</p>
 </footer>
 
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, orderBy, where, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAG-IU1PxGzXT4rshY8QUknWG3kI3t0nfg",
+    authDomain: "myndguard-382d4.firebaseapp.com",
+    projectId: "myndguard-382d4",
+    storageBucket: "myndguard-382d4.firebasestorage.app",
+    messagingSenderId: "971430698041",
+    appId: "1:971430698041:web:733b0a269e2b5f602381e8"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+
+  // ── Load approved testimonials from Firebase ──────────────────────────────
+  async function loadTestimonials() {
+    try {
+      const q = query(
+        collection(db, 'testimonials'),
+        where('status', '==', 'approved'),
+        orderBy('timestamp', 'desc')
+      );
+      const snap = await getDocs(q);
+      const grid = document.getElementById('testimonials-grid');
+      snap.forEach(doc => {
+        const d = doc.data();
+        const emoji = d.role === 'Parent' ? '👨' : d.role === 'Student' ? '🧑' : d.role === 'School Counsellor' ? '👩‍🏫' : '🌟';
+        const stars = '★'.repeat(d.rating || 5) + '☆'.repeat(5 - (d.rating || 5));
+        const card = document.createElement('div');
+        card.className = 'testimonial-card visible';
+        card.innerHTML = `
+          <span class="quote-mark">"</span>
+          <p class="testimonial-text">${d.text}</p>
+          <div style="color:var(--gold);font-size:14px;margin-bottom:12px;">${stars}</div>
+          <div class="testimonial-author">
+            <div class="author-avatar">${emoji}</div>
+            <div>
+              <div class="author-name">${d.name}</div>
+              <div class="author-role">${d.role}${d.location ? ' · ' + d.location : ''}</div>
+            </div>
+          </div>`;
+        grid.appendChild(card);
+      });
+      updateCarousel();
+    } catch(e) {
+      console.log('Could not load testimonials:', e);
+      updateCarousel();
+    }
+  }
+
+  // ── Submit testimonial to Firebase ────────────────────────────────────────
+  window.submitTestimonial = async function() {
+    const name     = document.getElementById('t-name').value.trim();
+    const role     = document.getElementById('t-role').value;
+    const text     = document.getElementById('t-text').value.trim();
+    const location = document.getElementById('t-location').value.trim();
+    const rating   = window.selectedRating || 5;
+
+    if (!name || !role || !text) {
+      alert('Please fill in your name, role, and experience before submitting.');
+      return;
+    }
+
+    const btn = document.querySelector('.testimonial-form .btn-primary');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+
+    try {
+      await addDoc(collection(db, 'testimonials'), {
+        name, role, text, location, rating,
+        status: 'pending',
+        timestamp: serverTimestamp()
+      });
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } catch(e) {
+      alert('Something went wrong. Please try again.');
+      btn.textContent = 'Submit Testimonial';
+      btn.disabled = false;
+    }
+  };
+
+  loadTestimonials();
+</script>
+
 <script>
   // ── Scroll reveal ──────────────────────────────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
@@ -1331,11 +1563,10 @@
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   // ── Star rating ───────────────────────────────────────────────────────────
-  let selectedRating = 0;
+  window.selectedRating = 0;
   document.querySelectorAll('.star-btn').forEach(btn => {
     btn.addEventListener('mouseover', () => {
       const val = +btn.dataset.val;
@@ -1345,71 +1576,90 @@
     });
     btn.addEventListener('mouseout', () => {
       document.querySelectorAll('.star-btn').forEach(b => {
-        b.classList.toggle('active', +b.dataset.val <= selectedRating);
+        b.classList.toggle('active', +b.dataset.val <= window.selectedRating);
       });
     });
     btn.addEventListener('click', () => {
-      selectedRating = +btn.dataset.val;
+      window.selectedRating = +btn.dataset.val;
       document.querySelectorAll('.star-btn').forEach(b => {
-        b.classList.toggle('active', +b.dataset.val <= selectedRating);
+        b.classList.toggle('active', +b.dataset.val <= window.selectedRating);
       });
     });
   });
 
-  // ── Submit testimonial ─────────────────────────────────────────────────────
-  function submitTestimonial() {
-    const name     = document.getElementById('t-name').value.trim();
-    const role     = document.getElementById('t-role').value;
-    const text     = document.getElementById('t-text').value.trim();
-    const location = document.getElementById('t-location').value.trim();
+  // ── Carousel ──────────────────────────────────────────────────────────────
+  window.updateCarousel = function() {
+    const grid  = document.getElementById('testimonials-grid');
+    const dots  = document.getElementById('carousel-dots');
+    const cards = grid.querySelectorAll('.testimonial-card');
+    const total = cards.length;
+    if (!total) return;
 
-    if (!name || !role || !text) {
-      alert('Please fill in your name, role, and experience before submitting.');
-      return;
-    }
+    // Build dots
+    dots.innerHTML = '';
+    cards.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToCard(i);
+      dots.appendChild(dot);
+    });
 
-    // Add to the testimonials grid
-    const grid = document.getElementById('testimonials-grid');
-    const card = document.createElement('div');
-    card.className = 'testimonial-card';
-    const emoji = role === 'Parent' ? '👨' : role === 'Student' ? '🧑' : role === 'School Counsellor' ? '👩‍🏫' : '🌟';
-    card.innerHTML = `
-      <span class="quote-mark">"</span>
-      <p class="testimonial-text">${text}</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">${emoji}</div>
-        <div>
-          <div class="author-name">${name}</div>
-          <div class="author-role">${role}${location ? ' · ' + location : ''}</div>
-        </div>
-      </div>
-    `;
-    grid.appendChild(card);
+    updateButtons();
+  };
 
-    // Show success
-    document.getElementById('form-wrap').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-
-    // Scroll to new card
-    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+  function currentIndex() {
+    const grid  = document.getElementById('testimonials-grid');
+    const cards = grid.querySelectorAll('.testimonial-card');
+    const cardW = cards[0] ? cards[0].offsetWidth + 24 : 364;
+    return Math.round(grid.scrollLeft / cardW);
   }
+
+  function goToCard(i) {
+    const grid  = document.getElementById('testimonials-grid');
+    const cards = grid.querySelectorAll('.testimonial-card');
+    const cardW = cards[0] ? cards[0].offsetWidth + 24 : 364;
+    grid.scrollTo({ left: i * cardW, behavior: 'smooth' });
+    setTimeout(updateButtons, 350);
+  }
+
+  function updateButtons() {
+    const grid  = document.getElementById('testimonials-grid');
+    const cards = grid.querySelectorAll('.testimonial-card');
+    const idx   = currentIndex();
+    const dots  = document.querySelectorAll('.carousel-dot');
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    const prev = document.getElementById('carousel-prev');
+    const next = document.getElementById('carousel-next');
+    if (prev) prev.disabled = idx === 0;
+    if (next) next.disabled = idx >= cards.length - 1;
+  }
+
+  window.scrollCarousel = function(dir) {
+    const idx = currentIndex();
+    goToCard(idx + dir);
+  };
+
+  document.getElementById('testimonials-grid')?.addEventListener('scroll', () => {
+    clearTimeout(window._scrollTimer);
+    window._scrollTimer = setTimeout(updateButtons, 100);
+  });
 
   // ── Nav active state ───────────────────────────────────────────────────────
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
-
   const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         navLinks.forEach(a => {
-          a.style.color = a.getAttribute('href') === '#' + entry.target.id
-            ? 'var(--gold)' : '';
+          a.style.color = a.getAttribute('href') === '#' + entry.target.id ? 'var(--gold)' : '';
         });
       }
     });
   }, { threshold: 0.4 });
-
   sections.forEach(s => navObserver.observe(s));
+
+  // Init carousel with seed cards
+  updateCarousel();
 </script>
 </body>
 </html>
