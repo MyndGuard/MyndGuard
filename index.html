@@ -4,6 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MyndGuard — Family Wellness Monitor</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="MyndGuard is a free AI-powered Chrome extension that helps families understand digital wellness patterns — privately, compassionately, and without judgement. Built by students at Inventure Academy, Bengaluru." />
+  <meta name="keywords" content="mental wellness, family wellness, chrome extension, digital habits, student wellness, school counsellor, browsing patterns, AI wellness, Vidya Suravarapu, Uma Suravarapu, Inventure Academy, MyndGuard, MindGuard, wellness monitor, wellness check, well being check, online monitor, online habits, digital wellbeing, digital habits, online wellbeing, technovation, mental health app, mental health monitor, SDG3, psychologist, counselling app" />
+  <meta name="author" content="Vidya Suravarapu, Uma Suravarapu" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://myndguard.com" />
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://myndguard.com" />
+  <meta property="og:title" content="MyndGuard — Family Wellness Monitor" />
+  <meta property="og:description" content="A free AI-powered Chrome extension that helps families understand digital wellness patterns — privately, compassionately, and without judgement." />
+  <meta property="og:image" content="https://myndguard.com/logo.png" />
+  <meta property="og:site_name" content="MyndGuard" />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="MyndGuard — Family Wellness Monitor" />
+  <meta name="twitter:description" content="A free AI-powered Chrome extension that helps families understand digital wellness patterns — privately, compassionately, and without judgement." />
+  <meta name="twitter:image" content="https://myndguard.com/logo.png" />
+
+  <!-- Structured Data (helps Google understand the app and founders) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MyndGuard",
+    "alternateName": "MindGuard",
+    "description": "An AI-powered Chrome extension that helps families understand digital wellness patterns privately and compassionately.",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Chrome",
+    "url": "https://myndguard.com",
+    "downloadUrl": "https://github.com/myndguard/MyndGuard/releases/download/v1.1/MyndGuard-v1.1.zip",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": [
+      { "@type": "Person", "name": "Vidya Suravarapu", "affiliation": "Inventure Academy, Bengaluru" },
+      { "@type": "Person", "name": "Uma Suravarapu", "affiliation": "Inventure Academy, Bengaluru" }
+    ],
+    "creator": { "@type": "Organization", "name": "MyndGuard", "url": "https://myndguard.com" },
+    "keywords": "mental wellness, family wellness, digital habits, student wellness, chrome extension, counselling app, mental health monitor"
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -1076,9 +1121,19 @@
         grid-template-columns: unset;
       }
       .audience-card {
-        min-width: 85vw;
+        min-width: 51vw;
+        max-width: 51vw;
         scroll-snap-align: start;
         flex-shrink: 0;
+        box-sizing: border-box;
+      }
+      .audience-card p,
+      .audience-card h3,
+      .audience-card .card-points li {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
       }
 
       /* SDG impact cards — 2 per row */
