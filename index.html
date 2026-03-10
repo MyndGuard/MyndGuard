@@ -991,6 +991,155 @@
       color: var(--muted);
       line-height: 1.6;
     }
+
+    /* ── Rotating tagline ── */
+    .hero-rotating {
+      min-height: 2.4em;
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .rotating-line {
+      position: absolute;
+      left: 0; right: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-style: italic;
+      color: var(--pale);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+      text-align: center;
+    }
+
+    .rotating-line.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Journey zigzag desktop ── */
+    .journey-step {
+      display: flex;
+      gap: 0;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+
+    .journey-left {
+      flex: 1;
+      text-align: right;
+      padding-right: 48px;
+    }
+
+    .journey-right {
+      flex: 1;
+      padding-left: 48px;
+    }
+
+    .journey-dot {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(212,168,50,0.12);
+      border: 2px solid rgba(212,168,50,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      z-index: 1;
+      box-shadow: 0 0 24px rgba(212,168,50,0.1);
+    }
+
+    .journey-dot.final {
+      background: rgba(212,168,50,0.2);
+      border-color: var(--accent);
+      box-shadow: 0 0 32px rgba(212,168,50,0.25);
+    }
+
+    /* ── Mobile overrides ── */
+    @media (max-width: 768px) {
+      /* Hero */
+      #home { padding: 90px 20px 60px; min-height: auto; }
+      .hero-logo { width: 100px; height: 100px; margin-bottom: 20px; }
+      h1 { font-size: 52px; }
+      .hero-desc { font-size: 16px; margin-bottom: 32px; }
+
+      /* Audience cards — swipeable horizontal carousel */
+      .audience-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding-bottom: 16px;
+        grid-template-columns: unset;
+      }
+      .audience-card {
+        min-width: 85vw;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+      }
+
+      /* SDG impact cards — 2 per row */
+      #impact .impact-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+      }
+
+      /* Features — 2 per row */
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      /* Journey — full width stacked on mobile */
+      .journey-step {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 36px;
+        gap: 12px;
+      }
+      .journey-left, .journey-right {
+        flex: unset;
+        width: 100%;
+        text-align: left !important;
+        padding: 0 !important;
+      }
+      .journey-dot {
+        margin-bottom: 4px;
+      }
+
+      /* Founder cards — photo top, text below */
+      .founder-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .founder-avatar {
+        width: 90px;
+        height: 90px;
+        flex-shrink: 0;
+      }
+      .founder-tags { justify-content: center; }
+
+      /* Section padding */
+      #why { padding: 60px 20px; }
+      #impact { padding: 60px 0 !important; }
+      #features { padding: 60px 20px; }
+      #download { padding: 60px 20px; }
+      #testimonials { padding: 60px 20px; }
+      #about { padding: 60px 20px; }
+      #journey { padding: 60px 0 !important; }
+
+      /* Nav */
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+
+      /* Form */
+      .testimonial-form { padding: 32px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
   </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-43QKX43MTZ"></script>
@@ -1039,6 +1188,12 @@
     <p class="hero-desc">
       An AI-powered Chrome extension that gently monitors browsing patterns to surface mental wellness insights — helping parents, educators, and school counsellors stay connected to what matters most.
     </p>
+    <div class="hero-rotating">
+      <span class="rotating-line active">"Mental wellness is not a problem to solve. It's a journey to understand."</span>
+      <span class="rotating-line">"We don't fix you — because you don't need to be fixed."</span>
+      <span class="rotating-line">"See yourself more clearly. Share when you're ready."</span>
+      <span class="rotating-line">"Not surveillance. Understanding. Not control. Connection."</span>
+    </div>
     <div class="hero-btns">
       <a href="#download" class="btn-primary">⬇ Download Extension</a>
       <a href="#why" class="btn-outline">Learn More</a>
@@ -1066,7 +1221,7 @@
       <h3>Stay in the loop, not in the way</h3>
       <p>Get gentle, AI-generated wellness reports about your child's digital habits — without invading their privacy or reading their messages.</p>
       <ul class="card-points">
-        <li>Receive email summaries every 6 hours</li>
+        <li>Receive email summaries every 8 hours</li>
         <li>Spot concerning patterns early — late-night browsing, distress searches</li>
         <li>No raw URLs ever stored or shared</li>
         <li>Start meaningful conversations with context</li>
@@ -1077,23 +1232,24 @@
       <span class="card-icon">🎒</span>
       <p class="card-who">For Students & Teens</p>
       <h3>Understand yourself better</h3>
-      <p>Your browsing habits tell a story about how you're really feeling. MyndGuard helps you reflect on your own digital wellness — privately.</p>
+      <p>Your browsing habits tell a story about how you're really feeling. MyndGuard helps you reflect on your own digital wellness — privately, and without judgement.</p>
       <ul class="card-points">
         <li>See your own wellness score after analysis</li>
         <li>Discover patterns you didn't notice</li>
         <li>Get gentle, non-judgmental recommendations</li>
         <li>All data stays on your device</li>
       </ul>
+      <p style="margin-top:20px;font-size:15px;color:var(--accent);font-style:italic;">Designed with students at the centre — because we are students too.</p>
     </div>
 
     <div class="audience-card reveal">
       <span class="card-icon">🏫</span>
       <p class="card-who">For School Counsellors</p>
-      <h3>Scale your support system</h3>
+      <h3>Support every student, deeply</h3>
       <p>Support more students with deeper insight. MyndGuard surfaces patterns that are easy to miss in a busy school environment.</p>
       <ul class="card-points">
-        <li>Identify at-risk students earlier</li>
-        <li>Evidence-based conversations with students</li>
+        <li>Notice patterns before they go unnoticed</li>
+        <li>Start more informed, compassionate conversations</li>
         <li>Share guardian access with parents</li>
         <li>Completely free for educators</li>
       </ul>
@@ -1129,11 +1285,11 @@
     </div>
 
     <!-- Impact cards -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-bottom:64px;">
+    <div class="impact-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-bottom:64px;">
       <div class="reveal" style="background:rgba(13,31,92,0.4);border:1px solid rgba(38,161,80,0.2);border-radius:16px;padding:32px;">
         <div style="font-size:32px;margin-bottom:16px;">🧠</div>
-        <h4 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--white);margin-bottom:12px;">Early Mental Health Detection</h4>
-        <p style="color:var(--muted);font-size:15px;line-height:1.7;">MyndGuard identifies early warning signs of stress, anxiety, and emotional distress through digital behaviour patterns — before they escalate into serious mental health concerns.</p>
+        <h4 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--white);margin-bottom:12px;">Early Pattern Recognition</h4>
+        <p style="color:var(--muted);font-size:15px;line-height:1.7;">MyndGuard holds up a mirror to your digital behaviour — helping you notice patterns that may be worth paying attention to, before they go unnoticed for too long.</p>
       </div>
       <div class="reveal" style="background:rgba(13,31,92,0.4);border:1px solid rgba(38,161,80,0.2);border-radius:16px;padding:32px;">
         <div style="font-size:32px;margin-bottom:16px;">👨‍👩‍👧</div>
@@ -1143,12 +1299,12 @@
       <div class="reveal" style="background:rgba(13,31,92,0.4);border:1px solid rgba(38,161,80,0.2);border-radius:16px;padding:32px;">
         <div style="font-size:32px;margin-bottom:16px;">🏫</div>
         <h4 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--white);margin-bottom:12px;">Supporting Schools &amp; Counsellors</h4>
-        <p style="color:var(--muted);font-size:15px;line-height:1.7;">School counsellors gain a powerful, privacy-first tool to proactively support at-risk students — helping institutions fulfill their duty of care in the digital age.</p>
+        <p style="color:var(--muted);font-size:15px;line-height:1.7;">School counsellors gain a privacy-first tool to proactively start more informed, compassionate conversations with students — helping schools stay connected to what matters most, in the digital age.</p>
       </div>
       <div class="reveal" style="background:rgba(13,31,92,0.4);border:1px solid rgba(38,161,80,0.2);border-radius:16px;padding:32px;">
         <div style="font-size:32px;margin-bottom:16px;">📵</div>
-        <h4 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--white);margin-bottom:12px;">Reducing Harmful Digital Habits</h4>
-        <p style="color:var(--muted);font-size:15px;line-height:1.7;">From doom-scrolling to binge-watching, MyndGuard surfaces unhealthy patterns gently — empowering young people to take control of their digital habits and protect their mental health.</p>
+        <h4 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--white);margin-bottom:12px;">Patterns Worth Noticing</h4>
+        <p style="color:var(--muted);font-size:15px;line-height:1.7;">From doom-scrolling to binge-watching, MyndGuard gently surfaces patterns worth noticing — empowering young people to understand their digital habits and make choices that feel right for them.</p>
       </div>
       <div class="reveal" style="background:rgba(13,31,92,0.4);border:1px solid rgba(38,161,80,0.2);border-radius:16px;padding:32px;">
         <div style="font-size:32px;margin-bottom:16px;">🔒</div>
@@ -1239,7 +1395,7 @@
       <div class="feature-item reveal">
         <div class="feature-icon">📧</div>
         <h4>Email Reports</h4>
-        <p>Automated wellness summaries sent to parents and guardians every 6 hours.</p>
+        <p>Automated wellness summaries sent to parents and guardians every 8 hours.</p>
       </div>
       <div class="feature-item reveal">
         <div class="feature-icon">🔒</div>
@@ -1269,7 +1425,7 @@
       </div>
       <h3>Download MyndGuard</h3>
       <p>Free for families, students, and educators. Works on Chrome and Chromium-based browsers.</p>
-      <a href="https://raw.githubusercontent.com/myndguard/MyndGuard/main/MyndGuard.zip" class="btn-primary" download onclick="trackDownload()">⬇ Download MyndGuard.zip</a>
+      <a href="https://github.com/myndguard/MyndGuard/releases/download/v1.0/MyndGuard.zip" class="btn-primary" download onclick="trackDownload()">⬇ Download MyndGuard.zip</a>
       <div class="privacy-strip">
         <span>🔒</span>
         <p>Your browsing data never leaves your device. No accounts required. No data sold.</p>
@@ -1519,21 +1675,21 @@
       <div style="position:absolute;left:50%;transform:translateX(-50%);top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,rgba(212,168,50,0.35),transparent);"></div>
 
       <!-- Step 1 -->
-      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
-        <div style="flex:1;text-align:right;padding-right:48px;">
+      <div class="journey-step reveal">
+        <div class="journey-left">
           <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 1</div>
           <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">The Question</h3>
           <p style="color:var(--muted);font-size:16px;line-height:1.7;">It started with a simple curiosity — can technology understand how we feel? Vidya and Uma began exploring whether browsing patterns could reveal something meaningful about mental wellness.</p>
         </div>
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">💡</div>
-        <div style="flex:1;padding-left:48px;"></div>
+        <div class="journey-dot">💡</div>
+        <div class="journey-right"></div>
       </div>
 
       <!-- Step 2 -->
-      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
-        <div style="flex:1;padding-right:48px;"></div>
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">🎨</div>
-        <div style="flex:1;padding-left:48px;">
+      <div class="journey-step reveal">
+        <div class="journey-left"></div>
+        <div class="journey-dot">🎨</div>
+        <div class="journey-right">
           <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 2</div>
           <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">Designing the Vision in Figma</h3>
           <p style="color:var(--muted);font-size:16px;line-height:1.7;">Before writing a single line of code, the entire product was designed in Figma — mapping out screens, user flows, and the wellness dashboard. This became the blueprint for everything that followed.</p>
@@ -1541,43 +1697,43 @@
       </div>
 
       <!-- Step 3 -->
-      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
-        <div style="flex:1;text-align:right;padding-right:48px;">
+      <div class="journey-step reveal">
+        <div class="journey-left">
           <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 3</div>
           <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">Building the Chrome Extension</h3>
           <p style="color:var(--muted);font-size:16px;line-height:1.7;">Vidya architected the core extension using Chrome Manifest V3 — building the data collection engine that monitors browsing patterns across YouTube, Reddit, Google Search, and more.</p>
         </div>
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">🔧</div>
-        <div style="flex:1;padding-left:48px;"></div>
+        <div class="journey-dot">🔧</div>
+        <div class="journey-right"></div>
       </div>
 
       <!-- Step 4 -->
-      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
-        <div style="flex:1;padding-right:48px;"></div>
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">🤖</div>
-        <div style="flex:1;padding-left:48px;">
+      <div class="journey-step reveal">
+        <div class="journey-left"></div>
+        <div class="journey-dot">🤖</div>
+        <div class="journey-right">
           <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 4</div>
           <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">Integrating Groq AI</h3>
-          <p style="color:var(--muted);font-size:16px;line-height:1.7;">Uma researched and selected Groq's Llama 3.3-70B model as the AI engine — and configured the entire integration herself. The result: real-time wellness scoring that analyses 11 data sources every 6 hours.</p>
+          <p style="color:var(--muted);font-size:16px;line-height:1.7;">Uma researched and selected Groq's Llama 3.3-70B model as the AI engine — and configured the entire integration herself. The result: real-time wellness scoring that analyses 11 data sources every 8 hours.</p>
         </div>
       </div>
 
       <!-- Step 5 -->
-      <div class="reveal" style="display:flex;gap:0;align-items:center;margin-bottom:56px;">
-        <div style="flex:1;text-align:right;padding-right:48px;">
+      <div class="journey-step reveal">
+        <div class="journey-left">
           <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">STAGE 5</div>
           <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">Adding Email Reports with EmailJS</h3>
           <p style="color:var(--muted);font-size:16px;line-height:1.7;">Uma configured EmailJS to deliver automated wellness summaries directly to parents and guardians — giving families a gentle, non-intrusive window into digital wellbeing.</p>
         </div>
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.12);border:2px solid rgba(212,168,50,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 24px rgba(212,168,50,0.1);">📧</div>
-        <div style="flex:1;padding-left:48px;"></div>
+        <div class="journey-dot">📧</div>
+        <div class="journey-right"></div>
       </div>
 
       <!-- Step 6 -->
-      <div class="reveal" style="display:flex;gap:0;align-items:center;">
-        <div style="flex:1;padding-right:48px;"></div>
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(212,168,50,0.2);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1;box-shadow:0 0 32px rgba(212,168,50,0.25);">🌟</div>
-        <div style="flex:1;padding-left:48px;">
+      <div class="journey-step reveal">
+        <div class="journey-left"></div>
+        <div class="journey-dot final">🌟</div>
+        <div class="journey-right">
           <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:3px;margin-bottom:8px;">TODAY</div>
           <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:10px;">MyndGuard is Live</h3>
           <p style="color:var(--muted);font-size:16px;line-height:1.7;">MyndGuard is now a fully working Chrome extension used by real families. Built entirely by two students from Inventure Academy, Bengaluru — and just getting started.</p>
@@ -1605,7 +1761,7 @@
       <li style="font-size:15px;color:var(--pale);margin-bottom:8px;">📊 Monitors 11 data sources — YouTube, Reddit, Google Search, Shopping, Streaming, AI Tools, News &amp; General Browsing</li>
       <li style="font-size:15px;color:var(--pale);margin-bottom:8px;">📧 Automated wellness email reports via EmailJS</li>
       <li style="font-size:15px;color:var(--pale);margin-bottom:8px;">🔒 100% private — all processing done locally on your device</li>
-      <li style="font-size:15px;color:var(--pale);">🌐 Analysis runs automatically every 6 hours</li>
+      <li style="font-size:15px;color:var(--pale);">🌐 Analysis runs automatically every 8 hours</li>
     </ul>
   </div>
 
@@ -1825,6 +1981,17 @@
 
   window.addEventListener('scroll', updateActiveNav, { passive: true });
   updateActiveNav();
+
+  // ── Rotating tagline ──────────────────────────────────────────────────────
+  const rotatingLines = document.querySelectorAll('.rotating-line');
+  let currentLine = 0;
+  if (rotatingLines.length > 1) {
+    setInterval(() => {
+      rotatingLines[currentLine].classList.remove('active');
+      currentLine = (currentLine + 1) % rotatingLines.length;
+      rotatingLines[currentLine].classList.add('active');
+    }, 3500);
+  }
 
   // Init carousel with seed cards
   updateCarousel();
