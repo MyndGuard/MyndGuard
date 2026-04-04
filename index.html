@@ -38,7 +38,7 @@
     "applicationCategory": "HealthApplication",
     "operatingSystem": "Chrome",
     "url": "https://myndguard.com",
-    "downloadUrl": "https://chromewebstore.google.com/detail/myndguard-%E2%80%93-family-wellne/gdndmbmcebeilmbgmnbljfnnbhffopbl",
+    "downloadUrl": "https://github.com/myndguard/MyndGuard/releases/download/v1.1/MyndGuard-v1.1.zip",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "author": [
       { "@type": "Person", "name": "Vidya Suravarapu", "affiliation": "Inventure Academy, Bengaluru" },
@@ -1215,9 +1215,9 @@
   gtag('js', new Date());
   gtag('config', 'G-43QKX43MTZ');
 
-  // Track Chrome Web Store install button click
+  // Track download button click
   function trackDownload() {
-    gtag('event', 'install_click', {
+    gtag('event', 'download', {
       event_category: 'Extension',
       event_label: 'MyndGuard v1.0'
     });
@@ -1261,7 +1261,7 @@
       <span class="rotating-line">"Not surveillance. Understanding. Not control. Connection."</span>
     </div>
     <div class="hero-btns">
-      <a href="https://chromewebstore.google.com/detail/myndguard-%E2%80%93-family-wellne/gdndmbmcebeilmbgmnbljfnnbhffopbl" target="_blank" class="btn-primary">⬇ Download Extension</a>
+      <a href="#download" class="btn-primary">⬇ Download Extension</a>
       <a href="#why" class="btn-outline">Learn More</a>
     </div>
   </div>
@@ -1479,22 +1479,19 @@
   <div class="nebula-right" style="top:-50px;opacity:0.6;"></div>
   <div class="reveal">
     <p class="section-label">Installation</p>
-    <h2>Get started in <em>1 minute</em></h2>
-    <p class="section-intro">MyndGuard is free on the Chrome Web Store. One click to install — no zip files, no developer mode.</p>
+    <h2>Get started in <em>3 minutes</em></h2>
+    <p class="section-intro">MyndGuard is a free Chrome extension. Download the zip, load it in Chrome, and you're ready.</p>
   </div>
 
   <div class="download-grid">
     <div class="download-card reveal">
       <div class="download-badge">
         <span>🧠</span>
-        <span>MyndGuard v1.1 · Chrome Extension</span>
+        <span>MyndGuard v1.0 · Chrome Extension</span>
       </div>
-      <h3>Add to Chrome</h3>
+      <h3>Download MyndGuard</h3>
       <p>Free for families, students, and educators. Works on Chrome and Chromium-based browsers.</p>
-      <a href="https://chromewebstore.google.com/detail/myndguard-%E2%80%93-family-wellne/gdndmbmcebeilmbgmnbljfnnbhffopbl" class="btn-primary" target="_blank" onclick="trackDownload()">
-        <img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png" style="height:20px;vertical-align:middle;margin-right:8px;" alt="Chrome Web Store" />
-        Add to Chrome — It's Free
-      </a>
+      <a href="https://github.com/myndguard/MyndGuard/releases/download/v1.1/MyndGuard-v1.1.zip" class="btn-primary" download onclick="trackDownload()">⬇ Download MyndGuard.zip</a>
       <div class="privacy-strip">
         <span>🔒</span>
         <p>Your browsing data never leaves your device. No accounts required. No data sold.</p>
@@ -1507,33 +1504,26 @@
         <li class="step">
           <div class="step-num">1</div>
           <div class="step-content">
-            <h4>Click "Add to Chrome"</h4>
-            <p>Visit the Chrome Web Store and click <strong>Add to Chrome</strong> → <strong>Add extension</strong>.</p>
+            <h4>Add to Chrome</h4>
+            <p>Visit the <a href="https://chromewebstore.google.com/detail/myndguard-%E2%80%93-family-wellne/gdndmbmcebeilmbgmnbljfnnbhffopbl?hl=en-US&utm_source=ext_sidebar" target="_blank" style="color:var(--accent);text-decoration:none;">Chrome Web Store</a> and click <strong>Add to Chrome</strong> → <strong>Add extension</strong>.</p>
           </div>
         </li>
         <li class="step">
           <div class="step-num">2</div>
           <div class="step-content">
             <h4>📌 Pin MyndGuard to your toolbar</h4>
-            <p>Click the puzzle 🧩 icon in Chrome's toolbar, then click the <strong>pin</strong> next to MyndGuard. This gives you quick one-click access.</p>
+            <p>Click the puzzle 🧩 icon in Chrome's toolbar, then click the <strong>pin</strong> next to <img src="logo.png" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin:0 3px;" alt="MyndGuard" /> MyndGuard. This gives you quick one-click access.</p>
           </div>
         </li>
         <li class="step">
           <div class="step-num">3</div>
           <div class="step-content">
             <h4>Open MyndGuard</h4>
-            <p>Click the MyndGuard icon in your toolbar. Your Google account links automatically!</p>
+            <p>Click the <img src="logo.png" style="width:18px;height:18px;border-radius:4px;vertical-align:middle;margin:0 3px;" alt="MyndGuard" /> MyndGuard icon in your toolbar. Your Google account links automatically!</p>
           </div>
         </li>
         <li class="step">
           <div class="step-num">4</div>
-          <div class="step-content">
-            <h4>Add a guardian email</h4>
-            <p>Go to the <strong>Email</strong> tab and add a parent or guardian's email to receive automated wellness reports.</p>
-          </div>
-        </li>
-        <li class="step">
-          <div class="step-num">5</div>
           <div class="step-content">
             <h4>You're all set! 🎉</h4>
             <p>MyndGuard will automatically analyse your browsing every 8 hours and send wellness reports to your guardian.</p>

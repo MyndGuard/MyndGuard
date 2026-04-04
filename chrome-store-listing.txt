@@ -11,7 +11,7 @@ FULL DESCRIPTION:
 -------------------------------------------------------
 MyndGuard is a free Chrome extension that helps families understand the mental wellness impact of their digital habits — privately, compassionately, and automatically.
 
-Built by two students from Inventure Academy, Bengaluru, MyndGuard monitors browsing patterns across 8 data sources and uses Groq's Llama 3.3-70B AI to generate a personalised wellness score every 8 hours.
+Built by two students from Inventure Academy, Bengaluru, MyndGuard monitors browsing patterns across 8 data sources and uses Groq's Llama 3.3-70B AI to generate a personalised wellness score every 6 hours.
 
 🧠 WHAT IT DOES
 MyndGuard analyses your digital activity across:
@@ -24,7 +24,7 @@ MyndGuard analyses your digital activity across:
 • News consumption — flags doom-scrolling habits
 • General browsing — categorises all other web activity
 
-Every 8 hours, MyndGuard combines all signals and generates:
+Every 6 hours, MyndGuard combines all signals and generates:
 ✅ A 1–10 wellness score
 ✅ Personalised insights and recommendations
 ✅ An automated email report sent to parents or guardians

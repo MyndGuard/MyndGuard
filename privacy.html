@@ -34,7 +34,7 @@
   <a class="back" href="https://myndguard.com">← Back to myndguard.com</a>
 
   <h1>Privacy Policy</h1>
-  <div class="updated">Last updated: March 16, 2026</div>
+  <div class="updated">Last updated: March 7, 2026</div>
 
   <div class="highlight">
     <p>🔒 <strong>The short version:</strong> MyndGuard processes all your browsing data locally on your device. We never sell, share, or store your personal browsing history on any server. Only anonymized, summarized wellness insights are ever sent to our AI provider.</p>
@@ -73,33 +73,17 @@
   </ul>
   <p>We do <strong>not</strong> sell, rent, or share your data with advertisers, data brokers, or any other third parties.</p>
 
-  <h2>5. Data Protection Mechanisms</h2>
-  <p>MyndGuard implements the following technical measures to protect your data:</p>
-  <ul>
-    <li><strong>Local-only processing</strong> — all browsing history analysis is performed entirely on your device using Chrome's built-in APIs. Raw data never leaves your device.</li>
-    <li><strong>AES-GCM encryption</strong> — all API credentials stored within the extension (Groq API key, EmailJS credentials) are encrypted using AES-GCM with PBKDF2 key derivation (100,000 iterations, SHA-256). They are decrypted only at runtime, in memory, and never exposed in plain text.</li>
-    <li><strong>HTTPS-only transmission</strong> — all external communications (to Groq API and EmailJS) are transmitted exclusively over HTTPS/TLS encrypted connections. No data is ever sent over unencrypted HTTP.</li>
-    <li><strong>Anonymization before transmission</strong> — browsing data is anonymized into category summaries (e.g. "15 entertainment visits") before being sent to any external API. Raw URLs, domain names, and page titles are never transmitted.</li>
-    <li><strong>No external database</strong> — MyndGuard does not operate any server or database. All wellness scores and settings are stored exclusively in Chrome's local storage on your device.</li>
-    <li><strong>Minimal data collection</strong> — MyndGuard only accesses the minimum data necessary to generate wellness insights. No data is collected beyond what is required for the extension's core functionality.</li>
-    <li><strong>Third-party security</strong> — Groq and EmailJS, our only two external service providers, both maintain industry-standard security practices. Links to their security policies are provided in Section 4.</li>
-  </ul>
-
-  <div class="highlight">
-    <p>🛡️ <strong>Summary:</strong> Your browsing data is processed locally, anonymized before any external transmission, and all API credentials are AES-GCM encrypted. MyndGuard is designed with a privacy-first, minimal-footprint architecture.</p>
-  </div>
-
-  <h2>6. Data Storage & Retention</h2>
+  <h2>5. Data Storage & Retention</h2>
   <ul>
     <li>All browsing data is processed in memory and <strong>never written to any external database</strong></li>
     <li>Wellness scores and settings are stored in <strong>Chrome's local storage</strong> on your device only</li>
     <li>You can clear all stored data at any time by removing the extension from Chrome</li>
   </ul>
 
-  <h2>7. Children's Privacy</h2>
+  <h2>6. Children's Privacy</h2>
   <p>MyndGuard is designed to be used by families, including minors, under parental supervision. We do not knowingly collect personal information from children under 13 without parental consent. The extension is intended to be installed and configured by a parent or guardian.</p>
 
-  <h2>8. Permissions Explained</h2>
+  <h2>7. Permissions Explained</h2>
   <p>MyndGuard requests the following Chrome permissions:</p>
   <ul>
     <li><strong>history</strong> — to read your browsing history for wellness analysis</li>
@@ -109,7 +93,7 @@
     <li><strong>identity / identity.email</strong> — to retrieve your Google account email for sending wellness reports</li>
   </ul>
 
-  <h2>9. Your Rights</h2>
+  <h2>8. Your Rights</h2>
   <p>You have the right to:</p>
   <ul>
     <li>Remove the extension at any time, which deletes all locally stored data</li>
@@ -117,10 +101,10 @@
     <li>Contact us at <a href="mailto:myndguard@gmail.com">myndguard@gmail.com</a> with any privacy concerns</li>
   </ul>
 
-  <h2>10. Changes to This Policy</h2>
+  <h2>9. Changes to This Policy</h2>
   <p>We may update this privacy policy from time to time. We will notify users of significant changes by updating the "Last updated" date at the top of this page. Continued use of MyndGuard after changes constitutes acceptance of the updated policy.</p>
 
-  <h2>11. Contact Us</h2>
+  <h2>10. Contact Us</h2>
   <p>For any privacy-related questions or concerns, please contact us at:</p>
   <p><a href="mailto:myndguard@gmail.com">myndguard@gmail.com</a></p>
 
