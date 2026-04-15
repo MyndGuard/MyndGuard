@@ -26,12 +26,13 @@
     a{color:var(--accent);}
     hr{border:none;border-top:1px solid rgba(212,168,50,0.1);margin:48px 0;}
     footer{text-align:center;font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-top:80px;padding-top:32px;border-top:1px solid rgba(212,168,50,0.1);}
+  .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
   </style>
 </head>
 <body>
 <div class="container">
-  <div class="logo"><a href="https://myndguard.com" style="display:flex;align-items:center;gap:10px;"><img src="logo.png" alt="MyndGuard" style="width:36px;height:36px;border-radius:8px;vertical-align:middle;"> MyndGuard</a></div>
-  <a class="back" href="https://myndguard.com">← Back to myndguard.com</a>
+  <div class="logo"><a href="https://myndguard.com" aria-label="MyndGuard home" style="display:flex;align-items:center;gap:10px;"><img src="logo.png" alt="MyndGuard Logo" style="width:36px;height:36px;border-radius:8px;vertical-align:middle;"> MyndGuard</a></div>
+  <a class="back" href="https://myndguard.com" aria-label="Back to MyndGuard home page"><span aria-hidden="true">←</span> Back to myndguard.com</a>
 
   <h1>Privacy Policy</h1>
   <div class="updated">Last updated: March 7, 2026</div>
@@ -110,8 +111,8 @@
 
   <hr>
 
-  <footer>
-    © 2026 MyndGuard · Made with ❤️ by students at Inventure Academy, Bengaluru
+  <footer role="contentinfo">
+    © 2026 MyndGuard · Made with <span aria-hidden="true">❤️</span><span class="sr-only">love</span> by students at Inventure Academy, Bengaluru
   </footer>
 </div>
 </body>

@@ -1206,6 +1206,31 @@
       .testimonial-form { padding: 32px 20px; }
       .form-row { grid-template-columns: 1fr; }
     }
+  /* ── Accessibility ── */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-nav {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent);
+    color: #000;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 9999;
+    transition: top 0.2s;
+  }
+  .skip-nav:focus { top: 0; }
   </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-43QKX43MTZ"></script>
@@ -1226,9 +1251,11 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+
 <!-- NAV -->
-<nav>
-  <a href="#home" class="nav-logo">
+<nav aria-label="Main navigation">
+  <a href="#home" class="nav-logo" aria-label="MyndGuard home">
     <img src="logo.png" alt="MyndGuard Logo" />
     <span class="nav-logo-text">MyndGuard</span>
   </a>
@@ -1243,7 +1270,8 @@
 </nav>
 
 <!-- HERO -->
-<section id="home">
+<section id="home" aria-label="Home" tabindex="-1">
+<div id="main-content">
   <div class="nebula-left"></div>
   <div class="nebula-right"></div>
   <div class="hero-inner">
@@ -1261,8 +1289,8 @@
       <span class="rotating-line">"Not surveillance. Understanding. Not control. Connection."</span>
     </div>
     <div class="hero-btns">
-      <a href="#download" class="btn-primary">⬇ Download Extension</a>
-      <a href="#why" class="btn-outline">Learn More</a>
+      <a href="#download" class="btn-primary" aria-label="Download MyndGuard Extension"><span aria-hidden="true">⬇</span> Download Extension</a>
+      <a href="#why" class="btn-outline" aria-label="Learn more about MyndGuard">Learn More</a>
     </div>
   </div>
 </section>
@@ -1270,7 +1298,7 @@
 <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
 <!-- WHY -->
-<section id="why">
+<section id="why" aria-label="Why MyndGuard">
   <div class="nebula-left" style="top:0;opacity:0.5;"></div>
   <div class="why-header reveal">
     <p class="section-label">Purpose</p>
@@ -1326,7 +1354,7 @@
 <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
 <!-- IMPACT -->
-<section id="impact" style="padding:100px 0;position:relative;overflow:hidden;">
+<section id="impact" aria-label="Impact and SDG Goals" style="padding:100px 0;position:relative;overflow:hidden;">
   <div class="nebula-right" style="opacity:0.4;top:20%;"></div>
   <div style="max-width:960px;margin:0 auto;padding:0 40px;">
 
@@ -1409,7 +1437,7 @@
 <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
 <!-- FEATURES -->
-<section id="features">
+<section id="features" aria-label="Features">
   <div class="features-inner">
     <div class="reveal" style="text-align:center; margin-bottom:0;">
       <p class="section-label">What it monitors</p>
@@ -1488,7 +1516,7 @@
 <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
 <!-- DOWNLOAD -->
-<section id="download">
+<section id="download" aria-label="Download and Installation">
   <div class="nebula-right" style="top:-50px;opacity:0.6;"></div>
   <div class="reveal">
     <p class="section-label">Installation</p>
@@ -1500,7 +1528,7 @@
     <div class="download-card reveal">
       <h3>Add to Chrome</h3>
       <p>Free for families, students, and educators. Works on Chrome and Chromium-based browsers.</p>
-      <a href="https://chromewebstore.google.com/detail/myndguard-%E2%80%93-family-wellne/gdndmbmcebeilmbgmnbljfnnbhffopbl?hl=en-US&utm_source=ext_sidebar" target="_blank" class="btn-primary" onclick="trackDownload()">Add to Chrome — It's Free</a>
+      <a href="https://chromewebstore.google.com/detail/myndguard-%E2%80%93-family-wellne/gdndmbmcebeilmbgmnbljfnnbhffopbl?hl=en-US&utm_source=ext_sidebar" target="_blank" rel="noopener noreferrer" class="btn-primary" onclick="trackDownload()" aria-label="Add MyndGuard to Chrome — opens Chrome Web Store in new tab">Add to Chrome — It's Free</a>
       <div class="privacy-strip">
         <span>🔒</span>
         <p>Your browsing data never leaves your device. No accounts required. No data sold.</p>
@@ -1553,7 +1581,7 @@
 <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials">
+<section id="testimonials" aria-label="Testimonials">
   <div class="testimonials-inner">
     <div class="testimonials-header reveal">
       <p class="section-label">Community</p>
@@ -1562,7 +1590,7 @@
     </div>
 
     <div class="carousel-wrapper">
-      <button class="carousel-btn prev" id="carousel-prev" onclick="scrollCarousel(-1)">&#8592;</button>
+      <button class="carousel-btn prev" id="carousel-prev" onclick="scrollCarousel(-1)" aria-label="Previous testimonial">&#8592;</button>
       <div class="testimonials-grid" id="testimonials-grid">
       <div class="testimonial-card reveal">
         <span class="quote-mark">"</span>
@@ -1600,7 +1628,7 @@
         </div>
       </div>
       </div>
-      <button class="carousel-btn next" id="carousel-next" onclick="scrollCarousel(1)">&#8594;</button>
+      <button class="carousel-btn next" id="carousel-next" onclick="scrollCarousel(1)" aria-label="Next testimonial">&#8594;</button>
     </div>
     <div class="carousel-dots" id="carousel-dots"></div>
 
@@ -1612,12 +1640,12 @@
       <div id="form-wrap">
         <div class="form-row">
           <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" id="t-name" placeholder="Full name" />
+            <label for="t-name">Your Name</label>
+            <input type="text" id="t-name" placeholder="Full name" aria-required="true" />
           </div>
           <div class="form-group">
-            <label>Role</label>
-            <select id="t-role">
+            <label for="t-role">Role</label>
+            <select id="t-role" aria-required="true">
               <option value="">Select your role</option>
               <option>Parent</option>
               <option>Student</option>
@@ -1629,27 +1657,27 @@
         </div>
 
         <div class="form-group">
-          <label>Location (optional)</label>
+          <label for="t-location">Location (optional)</label>
           <input type="text" id="t-location" placeholder="City, Country" />
         </div>
 
         <div class="form-group">
-          <label>Your experience with MyndGuard</label>
-          <textarea id="t-text" placeholder="Tell us how MyndGuard has helped you or your family..."></textarea>
+          <label for="t-text">Your experience with MyndGuard</label>
+          <textarea id="t-text" placeholder="Tell us how MyndGuard has helped you or your family..." aria-required="true"></textarea>
         </div>
 
         <div class="form-group">
-          <label>Rating</label>
-          <div class="stars-input" id="stars-input">
-            <button class="star-btn" data-val="1">★</button>
-            <button class="star-btn" data-val="2">★</button>
-            <button class="star-btn" data-val="3">★</button>
-            <button class="star-btn" data-val="4">★</button>
-            <button class="star-btn" data-val="5">★</button>
+          <label id="rating-label">Rating</label>
+          <div class="stars-input" id="stars-input" role="group" aria-labelledby="rating-label">
+            <button class="star-btn" data-val="1" aria-label="Rate 1 star">★</button>
+            <button class="star-btn" data-val="2" aria-label="Rate 2 stars">★</button>
+            <button class="star-btn" data-val="3" aria-label="Rate 3 stars">★</button>
+            <button class="star-btn" data-val="4" aria-label="Rate 4 stars">★</button>
+            <button class="star-btn" data-val="5" aria-label="Rate 5 stars">★</button>
           </div>
         </div>
 
-        <button class="btn-primary" onclick="submitTestimonial()" style="width:100%;margin-top:8px;">Submit Testimonial</button>
+        <button class="btn-primary" onclick="submitTestimonial()" aria-label="Submit your testimonial" style="width:100%;margin-top:8px;">Submit Testimonial</button>
       </div>
 
       <div class="form-success" id="form-success">
@@ -1664,7 +1692,7 @@
 <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
 <!-- ABOUT -->
-<section id="about">
+<section id="about" aria-label="About the founders">
   <div class="nebula-left" style="opacity:0.4;"></div>
   <div class="about-grid">
     <div class="about-mission reveal">
@@ -1728,7 +1756,7 @@
 </section>
 
 <!-- OUR JOURNEY -->
-<section id="journey" style="padding:100px 0;position:relative;overflow:hidden;">
+<section id="journey" aria-label="Our journey" style="padding:100px 0;position:relative;overflow:hidden;">
   <div class="nebula-right" style="opacity:0.3;top:10%;"></div>
   <div style="max-width:860px;margin:0 auto;padding:0 40px;">
 
@@ -1813,25 +1841,27 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-logo">MyndGuard</div>
-  <div class="footer-tagline">Family Wellness Monitor · Built with ♥ in Bengaluru</div>
+<footer role="contentinfo" aria-label="MyndGuard footer">
+  <div class="footer-logo" aria-label="MyndGuard">MyndGuard</div>
+  <div class="footer-tagline">Family Wellness Monitor · Built with <span aria-hidden="true">♥</span><span class="sr-only">love</span> in Bengaluru</div>
 
-  <ul class="footer-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#why">Why MyndGuard</a></li>
-    <li><a href="#download">Install</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#about">About</a>
-          <a href="#journey" style="margin-left:24px;letter-spacing:0.5px;">Our Journey</a></li>
-  </ul>
+  <nav aria-label="Footer navigation">
+    <ul class="footer-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#why">Why MyndGuard</a></li>
+      <li><a href="#download">Install</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#about">About</a>
+            <a href="#journey" style="margin-left:24px;letter-spacing:0.5px;">Our Journey</a></li>
+    </ul>
+  </nav>
   <div style="margin-top:20px;font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);line-height:2;">
-    <div>🐛 Report issues · 💬 Support → <a href="mailto:myndguard@gmail.com" style="color:var(--accent);text-decoration:none;">myndguard@gmail.com</a></div>
-    <div>🤝 Partners · 💼 Investors · 📣 Ads → <a href="mailto:myndguard@gmail.com" style="color:var(--accent);text-decoration:none;">myndguard@gmail.com</a></div>
+    <div><span aria-hidden="true">🐛</span> Report issues · <span aria-hidden="true">💬</span> Support → <a href="mailto:myndguard@gmail.com" style="color:var(--accent);text-decoration:none;" aria-label="Email MyndGuard support">myndguard@gmail.com</a></div>
+    <div><span aria-hidden="true">🤝</span> Partners · <span aria-hidden="true">💼</span> Investors · <span aria-hidden="true">📣</span> Ads → <a href="mailto:myndguard@gmail.com" style="color:var(--accent);text-decoration:none;" aria-label="Email MyndGuard for partnerships">myndguard@gmail.com</a></div>
   </div>
   <p class="footer-copy" style="margin-top:16px;">© 2026 MyndGuard · Made by students at Inventure Academy, Bengaluru</p>
   <p style="margin-top:10px;font-family:'Space Mono',monospace;font-size:11px;">
-    <a href="privacy.html" style="color:var(--muted);text-decoration:none;">Privacy Policy</a>
+    <a href="privacy.html" style="color:var(--muted);text-decoration:none;" aria-label="Read MyndGuard Privacy Policy">Privacy Policy</a>
   </p>
 </footer>
 
